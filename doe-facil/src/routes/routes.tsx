@@ -9,16 +9,14 @@ import { RegisterDonorPage } from "../pages/RegisterPages/RegisterDonorPage";
 export const Router = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />}>
-        <Route path="saiba-mais" element={<AboutUsPage />} />
-        <Route path="/registro">
-          <Route path="/registro/donatario" element={<RegisterDoneePage />} />
-          <Route path="/registro/doador" element={<RegisterDonorPage />} />
-        </Route>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/saiba-mais" element={<AboutUsPage />} />
 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
+      <Route path="/registro/donatario" element={<RegisterDoneePage />} />
+      <Route path="/registro/doador" element={<RegisterDonorPage />} />
+
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };

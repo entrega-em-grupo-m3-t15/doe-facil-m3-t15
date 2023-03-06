@@ -17,9 +17,9 @@ export const Header = () => {
       <div>
         <nav>
           {/* os links devem ter o style de um button e não devemos fazer um button para coloca-lo dentro */}
-          <button onClick={() => navigate("saiba-mais")}>Quem somos</button>
+          <Link to="saiba-mais">Quem somos</Link>
           <button onClick={() => setIsOpenModal(true)}>Cadastro</button>
-          <Link to={"/login"}>Entrar</Link>
+          <Link to="/login">Entrar</Link>
         </nav>
       </div>
 
