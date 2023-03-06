@@ -5,10 +5,12 @@ interface iInputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
-export const Input = ({ label, error, type, ...rest }: iInputProps) => (
-  <div>
-    <label>{label}</label>
-    <input type={type} {...rest} />
-    {error && <p>{error}</p>}
-  </div>
-);
+export const Input = ({ label, error, type, ...rest }: iInputProps) => {
+  return (
+    <div>
+      <label>{label}</label>
+      <input type={type} {...rest} />
+      {error && <p>{error}</p>}
+    </div>
+  );
+};
