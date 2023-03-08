@@ -3,6 +3,7 @@ import registerImg from "../../../../img/registerImg.svg";
 import { Input } from "../../Input/Input";
 import { useForm } from "react-hook-form";
 import { schemaDoneeRegister } from "../../../../validators/schemasRegister/schemaDoneeRegister";
+import { Button, StyleFormRegister } from "../../../../styles/components/form";
 
 export const RegisterDoneeForm = () => {
   const {
@@ -12,16 +13,10 @@ export const RegisterDoneeForm = () => {
   } = useForm(schemaDoneeRegister);
 
   return (
-    <>
-      <Header />
-
-      <div className="container">
-        <div className="left">
-          <img src={registerImg} alt="Imagem ilustrativa" />
-        </div>
-
-        <div className="right">
-          <form>
+    
+      
+          <StyleFormRegister>
+            <h1>Criar conta</h1>
             <Input label={"Nome"} {...register("name")} />
             <Input label={"Email"} {...register("email")} />
             <Input label={"Senha"} {...register("password")} />
@@ -32,10 +27,9 @@ export const RegisterDoneeForm = () => {
             <Input label={"Telefone"} type={"tel"} {...register("contact")} />
             <Input label={"Renda percapta"} {...register("userInCome")} />
 
-            <button>Cadastrar</button>
-          </form>
-        </div>
-      </div>
-    </>
+            <Button>Cadastrar</Button>
+          </StyleFormRegister>
+      
+    
   );
 };

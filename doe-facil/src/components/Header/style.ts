@@ -46,7 +46,7 @@ export const StyleHeader = styled.header`
     a{
         padding: .5rem;
 
-        width: 125px;
+        width: 145px;
 
         font-size: .75rem;
         font-weight: 500;
@@ -128,6 +128,8 @@ export const StyleHeader = styled.header`
 
     a{
         padding: .8rem;
+
+        width: 155px;
 
         font-size: 1rem;
     }

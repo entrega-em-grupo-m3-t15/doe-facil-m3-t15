@@ -38,6 +38,48 @@ export const StyleFormLogin = styled.form`
     
 `
 
+export const StyleFormRegister = styled.form`
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    align-items:center;
+    justify-content: center;
+
+    margin-top: 2rem;
+
+    border-radius: 12px;
+
+    width: 80%;
+    min-height: 400px;
+
+    padding: 2.5rem .5rem;
+
+    margin-bottom: 1rem;
+
+
+    background-color: var(--Color-primary-50);
+    color: var(--grey-0);
+
+    label{
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+    @media (min-width: 659px) {
+
+        min-height: 450px;
+        width: 60%;
+        margin-bottom: 0;
+        
+        label{
+            font-size: 1.2rem;
+        }
+
+
+    }
+    
+`
+
 export const Input = styled.input`
 
     padding: .6rem;
@@ -80,8 +122,8 @@ export const Button = styled.button`
 
     @media (min-width: 659px) {
         
-        padding: .8rem;
-        
+        padding: .5rem;
+        margin-top: .5rem;
         font-size: 1.45rem;
     }
 
