@@ -30,3 +30,19 @@ export interface iUserForm {
   axiosErrors?: iAxiosError;
   error?: string | undefined;
 }
+
+export interface iDoneeRegister {
+  name: string;
+  email: string;
+  userIncome: string;
+  password: string;
+  confirm_password: string;
+}
+
+export interface iDonorRegister {
+  name: string;
+  email: string;
+  contact: string;
+  password: string;
+  confirm_password: string;
+}

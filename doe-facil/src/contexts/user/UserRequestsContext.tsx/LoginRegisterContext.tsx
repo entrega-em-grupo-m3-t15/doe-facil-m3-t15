@@ -3,7 +3,15 @@ import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { API } from "../../../Services/API";
-import { iAxiosError, iUserForm, iUserLoginResponse, iUserRegister } from "../userInterfaces";
+
+import {
+  iAxiosError,
+  iDoneeRegister,
+  iDonorRegister,
+  iUserForm,
+  iUserLoginResponse,
+  iUserRegister,
+} from "../userInterfaces";
 import { iUserRequestsContext } from "./interfaces";
 
 export interface iUserRequestsrProps {
@@ -13,7 +21,7 @@ export interface iUserRequestsrProps {
 export const UserRequestsContext = createContext({} as iUserRequestsContext);
 
 export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<iUserLoginResponse | null>(null);
   const [loading, setLoading] = useState(false);
 
   let userID = localStorage.getItem("@USERID");
@@ -21,13 +29,26 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
   const navigate = useNavigate();
 
-  const createUserRequest = async (data: iUserRegister) => {
+  const createDoneeRequest = async (data: iDoneeRegister) => {
     try {
       await API.post<iUserRegister>("/users", data);
 
       toast.success("Cadastro realizado com sucesso!");
 
       navigate("/");
+    } catch (error) {
+      if (axios.isAxiosError<iAxiosError>(error)) {
+        const errorMessage = error.response?.data?.message;
+        toast.error(errorMessage);
+      }
+      console.error(error);
+      toast.error("Não foi possível realizar o cadastro");
+    }
+  };
+
+  const createDonorRequest = async (data: iDonorRegister) => {
+    try {
+      await API.post("/register", data);
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -52,7 +73,6 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
       setUser(response.data);
 
       navigate(`/main-page/${userID}`);
-      
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -92,7 +112,15 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
   return (
     <UserRequestsContext.Provider
-      value={{ user, setUser, loading, setLoading }}
+      value={{
+        user,
+        setUser,
+        loading,
+        setLoading,
+        createDoneeRequest,
+        createDonorRequest,
+        loginUserRequest,
+      }}
     >
       {children}
     </UserRequestsContext.Provider>

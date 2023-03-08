@@ -1,9 +1,10 @@
 import { SetStateAction } from "react";
 import {
   iAxiosError,
+  iDoneeRegister,
+  iDonorRegister,
   iUserForm,
   iUserLoginResponse,
-  iUserRegister,
 } from "../userInterfaces";
 
 export interface iUserRequestsContext {
@@ -12,6 +13,7 @@ export interface iUserRequestsContext {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 
-  createUserRequest: (data: iUserRegister) => Promise<iAxiosError | void>;
+  createDoneeRequest: (data: iDoneeRegister) => Promise<iAxiosError | void>;
+  createDonorRequest: (data: iDonorRegister) => Promise<iAxiosError | void>;
   loginUserRequest: (data: iUserForm) => Promise<iAxiosError | void>;
 }
