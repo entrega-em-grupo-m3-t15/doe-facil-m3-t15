@@ -39,7 +39,6 @@ export const StyleFormLogin = styled.form`
 export const StyleFormRegister = styled.form`
     display: flex;
     flex-direction: column;
-    gap: .6rem;
     align-items:center;
     justify-content: center;
 
@@ -48,29 +47,31 @@ export const StyleFormRegister = styled.form`
     border-radius: 12px;
 
     width: 80%;
-    min-height: 400px;
+    min-height: 575px;
 
-    padding: 2.5rem .5rem;
+    padding: 2rem .5rem;
 
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 
 
     background-color: var(--Color-primary-50);
     color: var(--grey-0);
 
+
     label{
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 600;
     }
 
     @media (min-width: 659px) {
 
-        min-height: 450px;
+        min-height: 575px;
         width: 60%;
         margin-bottom: 0;
+        padding-top: 2.5rem;
         
         label{
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
 
@@ -104,21 +105,23 @@ export const Input = styled.input`
 export const Button = styled.button`
     padding: 0.5rem;
 
-width: 80%;
+    width: 80%;
 
-border-radius: 6px;
-border: var(--grey-20);
+    border-radius: 6px;
+    border: var(--grey-20);
 
-background-color: var(--grey-20);
-color: var(--Sucess);
+    background-color: var(--grey-20);
+    color: var(--Sucess);
 
-font-size: 1rem;
-font-weight: 600;
+    font-size: 1rem;
+    font-weight: 600;
+
+    margin: 1.5rem 0rem;
 
   @media (min-width: 659px) {
       
-      padding: .5rem;
-      margin-top: .5rem;
+      padding: .3rem;
+      margin-top: 1.5rem;
       font-size: 1.45rem;
   }
 `

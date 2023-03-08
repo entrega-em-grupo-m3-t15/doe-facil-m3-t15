@@ -13,6 +13,7 @@ export const StylePageRegister = styled.div`
         font-size: 1.5rem;
         font-weight: 600;
         margin: .5rem 0;
+        padding: 1rem;
     }
 
     div{
@@ -22,7 +23,11 @@ export const StylePageRegister = styled.div`
         gap: 1rem;
 
         width: 80%;
-        height: 60%;
+        height: 50%;
+    }
+
+    .box_inputs{
+        height: 90%;
     }
 
     main{
@@ -64,7 +69,7 @@ export const StylePageRegister = styled.div`
         }   
         
         h1{
-            font-size: 2.2rem;
+            font-size: 2rem;
             margin: 0;
         }
 
@@ -82,6 +87,9 @@ export const StylePageRegister = styled.div`
             align-items: center;
             background: none;
         }
+
+       
+
     }
 
 

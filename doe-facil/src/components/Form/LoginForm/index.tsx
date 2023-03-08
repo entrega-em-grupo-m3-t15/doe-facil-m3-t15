@@ -27,7 +27,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <>
+    
       <StyleFormLogin onSubmit={handleSubmit(submitForm)}>
         <h1>Login</h1>
         <div>
@@ -46,8 +46,8 @@ export const LoginForm = () => {
 
         </div>
 
-        <Button type="submit">Cadastrar</Button>
+        <Button type="submit">Entrar</Button>
       </StyleFormLogin>
-    </>
+    
   );
 };

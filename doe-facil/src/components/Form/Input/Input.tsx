@@ -19,15 +19,15 @@ export const Input = ({
   const inputType = showPassword ? "text" : type;
 
   return (
-    <div>
+    <>
       <label>{label}</label>
       <input type={inputType} {...register} {...rest} />
-      {type === "password" && (
+      {/* {type === "password" && (
         <button type="button" onClick={() => setShowPassword(!showPassword)}>
           {showPassword ? <IoIosEyeOff /> : <IoIosEye />}
         </button>
-      )}
+      )} */}
       {error ? <p>{error}</p> : null}
-    </div>
+    </>
   );
 };
