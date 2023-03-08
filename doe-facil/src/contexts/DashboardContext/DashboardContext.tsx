@@ -9,24 +9,24 @@ import {
 } from "./interface";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { API } from "../../Services/api";
+import { API } from "../../Services/Api";
 
 export const DashboardContext = createContext({} as IDashboardContext);
 
 export const DashboardProvider = ({ children }: IChildrenProps) => {
   const [donations, setDonations] = useState<IGetDonations[]>([]);
 
-  const donationId = localStorage.getItem("@DONATIONID")
-  const token = localStorage.getItem("@USERTOKEN")
+  const donationId = localStorage.getItem("@DONATIONID");
+  const token = localStorage.getItem("@USERTOKEN");
 
   useEffect(() => {
     const getDonations = async () => {
       try {
         const response = await API.get("/donations", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         // setDonations(response.data)
       } catch (error) {
@@ -49,7 +49,7 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
         },
       });
 
-      toast.success("Doação cadastrada com sucesso!")
+      toast.success("Doação cadastrada com sucesso!");
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -62,13 +62,17 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
 
   const updateDonation = async (data: IUpdateDonation) => {
     try {
-      const response = API.patch<IUpdateDonation>(`/donations/${donationId}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = API.patch<IUpdateDonation>(
+        `/donations/${donationId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-      toast.success("Doação atualizada com sucesso!")
+      toast.success("Doação atualizada com sucesso!");
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -86,7 +90,7 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      toast.success("Doação deletada com sucesso!")
+      toast.success("Doação deletada com sucesso!");
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
