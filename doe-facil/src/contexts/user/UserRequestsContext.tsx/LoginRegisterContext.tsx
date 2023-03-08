@@ -30,8 +30,12 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
   const navigate = useNavigate();
 
   const createDoneeRequest = async (data: iDoneeRegister) => {
+    const { confirm_password, ...dataRegister } = data;
     try {
-      await API.post<iUserRegister>("/users", data);
+      await API.post("/users", {
+        ...dataRegister,
+        isDonor: false,
+      });
 
       toast.success("Cadastro realizado com sucesso!");
 
@@ -47,8 +51,12 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
   };
 
   const createDonorRequest = async (data: iDonorRegister) => {
+    const { confirm_password, ...dataRegister } = data;
     try {
-      await API.post<iUserRegister>("/register", data);
+      await API.post<iUserRegister>("/register", {
+        ...dataRegister,
+        isDonor: true,
+      });
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
