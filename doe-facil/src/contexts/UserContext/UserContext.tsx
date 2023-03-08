@@ -1,36 +1,54 @@
 import { createContext } from "react";
-import { IUserContextProps, IChildrenProps  } from "./inteface";
+import { useNavigate } from "react-router-dom";
+import { iAxiosError } from "../user/userInterfaces";
+import { IUserContextProps, IChildrenProps, iUpdateUser  } from "./inteface";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { API } from "../../Services/API";
 
-export const IUserContext = createContext<IUserContextProps | null>(null)
+export const UserContext = createContext({} as IUserContextProps)
 
 export const UserProvider = ({children}: IChildrenProps) => {
+
+  const navigate = useNavigate()
 
   const deleteUser = async () => {
     const token = localStorage.getItem("@userToken")
 
     try {
-      const response = await api.delete("/users/4", {
+      const response = await API.delete("/users/4", {
         headers: {
           Authorization: `Bearer ${token}`
-        }
+        } 
       })
+
+      navigate("/")
       console.log(response)
     } catch (error) {
+      if (axios.isAxiosError<iAxiosError>(error)) {
+        const errorMessage = error.response?.data?.message;
+        toast.error(errorMessage);
+      }
+
       console.log(error)
     }
   }
 
-  const updateUser = async () => {
+  const updateUser = async (data: iUpdateUser) => {
     const token = localStorage.getItem("@userToken")
 
     try {
-      const response = await api.patch("/users/4", {
+      const response = await API.patch<iUpdateUser>("/users/4", data, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
       console.log(response)
     } catch (error) {
+      if (axios.isAxiosError<iAxiosError>(error)) {
+        const errorMessage = error.response?.data?.message;
+        toast.error(errorMessage);
+      }
       console.log(error)
     }
   }
@@ -53,8 +71,8 @@ export const UserProvider = ({children}: IChildrenProps) => {
   // }, [])
 
   return(
-    <IUserContext.Provider value={{deleteUser, updateUser}}>
+    <UserContext.Provider value={{deleteUser, updateUser}}>
       {children}
-    </IUserContext.Provider>
+    </UserContext.Provider>
   )
 }
