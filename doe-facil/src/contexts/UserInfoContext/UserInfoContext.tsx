@@ -1,72 +1,59 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { iAxiosError } from "../user/userInterfaces";
 import { IUserContextProps, IChildrenProps, iUpdateUser } from "./inteface";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { API } from "../../Services/Api";
+import { API } from "../../Services/api";
 
 export const UserContext = createContext({} as IUserContextProps);
 
 export const UserProvider = ({ children }: IChildrenProps) => {
   const navigate = useNavigate();
 
+  const userId = localStorage.getItem("@USERID");
+  const token = localStorage.getItem("@USERTOKEN");
+
   const deleteUser = async () => {
-    const token = localStorage.getItem("@USERTOKEN");
 
     try {
-      const response = await API.delete("/users/4", {
+      const response = await API.delete(`/users/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
       navigate("/");
-      console.log(response);
+
+      toast.success("Usuário deletado com sucesso!")
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
         toast.error(errorMessage);
       }
 
-      console.log(error);
+      console.error(error);
     }
   };
 
   const updateUser = async (data: iUpdateUser) => {
-    const token = localStorage.getItem("@userToken");
 
     try {
-      const response = await API.patch<iUpdateUser>("/users/4", data, {
+      const response = await API.patch<iUpdateUser>(`/users/${userId}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
+
+      toast.success("Perfil atualizado com sucesso!")
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
         toast.error(errorMessage);
       }
-      console.log(error);
+      console.error(error);
     }
   };
-
-  // useEffect(() => {
-  //   const getUser = () => {
-  //     try {
-  //       setLoading(true)
-
-  //       const response = await api.get("/users/2/")
-
-  //       //consertar quando testar requisição, ainda não sei onde está a resposta da api
-  //       // setUsers(response.data)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   getUser()
-  // }, [])
 
   return (
     <UserContext.Provider value={{ deleteUser, updateUser }}>
