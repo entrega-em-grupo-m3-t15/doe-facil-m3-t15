@@ -16,10 +16,17 @@ export const DashboardContext = createContext({} as IDashboardContext);
 export const DashboardProvider = ({ children }: IChildrenProps) => {
   const [donations, setDonations] = useState<IGetDonations[]>([]);
 
+  const donationId = localStorage.getItem("@DONATIONID");
+  const token = localStorage.getItem("@USERTOKEN");
+
   useEffect(() => {
     const getDonations = async () => {
       try {
-        const response = await API.get("/donations/");
+        const response = await API.get("/donations", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         // setDonations(response.data)
       } catch (error) {
@@ -36,7 +43,13 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
 
   const registerDonation = async (data: IRegisterDonation) => {
     try {
-      const response = API.post<IRegisterDonation>("/donations", data);
+      const response = API.post<IRegisterDonation>("/donations", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      toast.success("Doação cadastrada com sucesso!");
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -49,7 +62,17 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
 
   const updateDonation = async (data: IUpdateDonation) => {
     try {
-      const response = API.patch<IUpdateDonation>("/donations/3", data);
+      const response = API.patch<IUpdateDonation>(
+        `/donations/${donationId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      toast.success("Doação atualizada com sucesso!");
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -62,7 +85,12 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
 
   const deleteDonation = async () => {
     try {
-      const response = API.delete("/donations/6");
+      const response = API.delete(`/donations/${donationId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast.success("Doação deletada com sucesso!");
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
