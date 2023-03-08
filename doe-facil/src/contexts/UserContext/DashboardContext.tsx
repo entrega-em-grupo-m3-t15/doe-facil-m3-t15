@@ -1,7 +1,11 @@
 import { createContext, useEffect, useState } from "react";
+import { API } from "../../Services/API";
+import { iAxiosError } from "../user/userInterfaces";
 import { IChildrenProps, IDashboardContext, IGetDonations, IRegisterDonation, IUpdateDonation } from "./interface";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-export const DashboardContext = createContext<IDashboardContext | null>(null)
+export const DashboardContext = createContext({} as IDashboardContext)
 
 export const DashboardProvider = ({children}: IChildrenProps) => {
 
@@ -10,12 +14,17 @@ export const DashboardProvider = ({children}: IChildrenProps) => {
   useEffect(() => {
     const getDonations = async () => {
       try {
-        const response = await api.get("/donations/")
+        const response = await API.get("/donations/")
 
         // setDonations(response.data)
-        console.log(response)
+        
       } catch (error) {
-        console.log(error)
+        if (axios.isAxiosError<iAxiosError>(error)) {
+        const errorMessage = error.response?.data?.message;
+        toast.error(errorMessage);
+      }
+        
+        console.error(error)
       }
     }
     getDonations()
@@ -23,29 +32,44 @@ export const DashboardProvider = ({children}: IChildrenProps) => {
 
   const registerDonation = async (data: IRegisterDonation) => {
     try {
-      const response = api.post("/donations", data)
+      const response = API.post<IRegisterDonation>("/donations", data)
 
-      console.log(response)
+      
     } catch (error) {
-      console.log(error)
+       if (axios.isAxiosError<iAxiosError>(error)) {
+        const errorMessage = error.response?.data?.message;
+        toast.error(errorMessage);
+      }
+
+      console.error(error)
     }
   }
 
   const updateDonation = async (data: IUpdateDonation) => {
     try {
-      const response = api.patch("/donations/3", data)
-      console.log(response)
+      const response = API.patch<IUpdateDonation>("/donations/3", data)
+      
     } catch (error) {
-      console.log(error)
+       if (axios.isAxiosError<iAxiosError>(error)) {
+        const errorMessage = error.response?.data?.message;
+        toast.error(errorMessage);
+      }
+
+      console.error(error)
     }
   }
 
   const deleteDonation = async () => {
     try {
-      const response = api.delete("donations/6")
-      console.log(response)
+      const response = API.delete("/donations/6")
+      
     } catch (error) {
-      console.log(error)
+       if (axios.isAxiosError<iAxiosError>(error)) {
+        const errorMessage = error.response?.data?.message;
+        toast.error(errorMessage);
+      }
+
+      console.error(error)
     }
   }
 

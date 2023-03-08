@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import { iAxiosError } from "../user/userInterfaces";
 
 export interface IUserProps {
   name: string;
@@ -7,9 +8,15 @@ export interface IUserProps {
   userIncome?: string;
 }
 
+export interface iUpdateUser{
+  name: string;
+  description: string;
+  amount: number;
+}
+
 export interface IUserContextProps{
-  deleteUser: () => void;
-  updateUser: () => void;
+  deleteUser: () => Promise<iAxiosError | void>;
+  updateUser: (data: iUpdateUser) => Promise<iAxiosError | void>;
 }
 
 export interface IChildrenProps {
