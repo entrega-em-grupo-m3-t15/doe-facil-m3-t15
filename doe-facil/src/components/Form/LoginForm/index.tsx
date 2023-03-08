@@ -4,6 +4,7 @@ import { schemaLoginUser } from "../../../validators/schemaLogin";
 import { Input } from "../Input/Input";
 import { useContext } from "react";
 import { UserRequestsContext } from "../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
+import { Button, StyleFormLogin } from "../../../styles/components/form";
 
 interface iloginUser extends FieldValues {
   email: string;
@@ -26,23 +27,27 @@ export const LoginForm = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit(submitForm)}>
-        <Input
-          label="Email"
-          register={register("email")}
-          type="mail"
-          error={errors.email?.message}
-        />
-        <Input
-          label="Senha"
-          register={register("password")}
-          type="password"
-          error={errors.password?.message}
-        />
+    
+      <StyleFormLogin onSubmit={handleSubmit(submitForm)}>
+        <h1>Login</h1>
+        <div>
+          <Input
+            label="Email"
+            register={register("email")}
+            type="mail"
+            error={errors.email?.message}
+          />
+          <Input
+            label="Senha"
+            register={register("password")}
+            type="password"
+            error={errors.password?.message}
+          />
 
-        <button type="submit">Cadastrar</button>
-      </form>
-    </>
+        </div>
+
+        <Button type="submit">Entrar</Button>
+      </StyleFormLogin>
+    
   );
 };
