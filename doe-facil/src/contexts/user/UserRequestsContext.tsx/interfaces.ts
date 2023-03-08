@@ -3,7 +3,7 @@ import {
   iAxiosError,
   iDoneeRegister,
   iDonorRegister,
-  iUserForm,
+  iUserLogin,
   iUserLoginResponse,
 } from "../userInterfaces";
 
@@ -15,5 +15,5 @@ export interface iUserRequestsContext {
 
   createDoneeRequest: (data: iDoneeRegister) => Promise<iAxiosError | void>;
   createDonorRequest: (data: iDonorRegister) => Promise<iAxiosError | void>;
-  loginUserRequest: (data: iUserForm) => Promise<iAxiosError | void>;
+  loginUserRequest: (data: iUserLogin) => Promise<iAxiosError | void>;
 }

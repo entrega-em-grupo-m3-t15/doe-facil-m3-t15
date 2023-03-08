@@ -2,13 +2,13 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { API } from "../../../Services/API";
+import { API } from "../../../Services/Api";
 
 import {
   iAxiosError,
   iDoneeRegister,
   iDonorRegister,
-  iUserForm,
+  iUserLogin,
   iUserLoginResponse,
   iUserRegister,
 } from "../userInterfaces";
@@ -48,7 +48,7 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
   const createDonorRequest = async (data: iDonorRegister) => {
     try {
-      await API.post("/register", data);
+      await API.post<iUserRegister>("/register", data);
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -59,7 +59,7 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
     }
   };
 
-  const loginUserRequest = async (data: iUserForm) => {
+  const loginUserRequest = async (data: iUserLogin) => {
     try {
       const response = await API.post("/login", data);
 

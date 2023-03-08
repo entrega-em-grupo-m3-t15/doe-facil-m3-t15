@@ -7,6 +7,7 @@ export interface iUserRegister {
   id: string;
   name: string;
   email: string;
+  contact: string;
   password: string;
   confirm_password: string;
   error?: string | undefined;
@@ -24,7 +25,7 @@ export interface iUserLoginResponse {
   user: iUserData;
 }
 
-export interface iUserForm {
+export interface iUserLogin {
   email: string;
   password: string;
   axiosErrors?: iAxiosError;
@@ -34,7 +35,9 @@ export interface iUserForm {
 export interface iDoneeRegister {
   name: string;
   email: string;
-  userIncome: string;
+  contact: string;
+  adress: string;
+  userInCome: string;
   password: string;
   confirm_password: string;
 }
@@ -43,6 +46,7 @@ export interface iDonorRegister {
   name: string;
   email: string;
   contact: string;
+  adress: string;
   password: string;
   confirm_password: string;
 }
