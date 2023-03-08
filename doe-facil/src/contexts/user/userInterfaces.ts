@@ -42,6 +42,9 @@ export interface iDoneeRegister {
   confirm_password: string;
 }
 
+export interface iDoneeRegisterDataRequest
+  extends Omit<iDoneeRegister, "confirm_password"> {}
+
 export interface iDonorRegister {
   name: string;
   email: string;

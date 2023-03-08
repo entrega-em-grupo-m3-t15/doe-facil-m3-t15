@@ -1,9 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { schemaLoginUser } from "../../../validators/schemaLogin";
-import { Header } from "../../Header/Header";
 import { Input } from "../Input/Input";
-import registerImg from "../../../img/registerImg.svg";
 import { useContext } from "react";
 import { UserRequestsContext } from "../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
 
@@ -29,32 +27,22 @@ export const LoginForm = () => {
 
   return (
     <>
-      <Header />
+      <form onSubmit={handleSubmit(submitForm)}>
+        <Input
+          label="Email"
+          register={register("email")}
+          type="mail"
+          error={errors.email?.message}
+        />
+        <Input
+          label="Senha"
+          register={register("password")}
+          type="password"
+          error={errors.password?.message}
+        />
 
-      <div className="container">
-        <div className="left">
-          <img src={registerImg} alt="Imagem ilustrativa" />
-        </div>
-
-        <div className="right">
-          <form onSubmit={handleSubmit(submitForm)}>
-            <Input
-              label="Email"
-              register={register("email")}
-              type="mail"
-              error={errors.email?.message}
-            />
-            <Input
-              label="Senha"
-              register={register("password")}
-              type="password"
-              error={errors.password?.message}
-            />
-
-            <button type="submit">Cadastrar</button>
-          </form>
-        </div>
-      </div>
+        <button type="submit">Cadastrar</button>
+      </form>
     </>
   );
 };

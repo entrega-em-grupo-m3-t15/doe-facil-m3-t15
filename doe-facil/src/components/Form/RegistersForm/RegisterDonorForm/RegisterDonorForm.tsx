@@ -1,6 +1,4 @@
-import { Header } from "../../../Header/Header";
 import { Input } from "../../Input/Input";
-import registerImg from "../../../../img/registerImg.svg";
 import { useForm } from "react-hook-form/dist/useForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaDonorRegister } from "../../../../validators/schemasRegister/schemaDonorRegister";
@@ -34,56 +32,46 @@ export const RegisterDoneeForm = () => {
 
   return (
     <>
-      <Header />
+      <form onSubmit={handleSubmit(submitForm)}>
+        <Input
+          label="Nome"
+          register={register("name")}
+          type="text"
+          error={errors.name?.message}
+        />
+        <Input
+          label="Email"
+          register={register("email")}
+          type="mail"
+          error={errors.email?.message}
+        />
+        <Input
+          label="Telefone"
+          register={register("contact")}
+          type="tel"
+          error={errors.contact?.message}
+        />
+        <Input
+          label="Endereço"
+          register={register("adress")}
+          type="text"
+          error={errors.adress?.message}
+        />
+        <Input
+          label="Senha"
+          register={register("password")}
+          type="password"
+          error={errors.password?.message}
+        />
+        <Input
+          type="password"
+          label="Confirmar senha"
+          register={register("confirm_password")}
+          error={errors.confirm_password?.message}
+        />
 
-      <div className="container">
-        <div className="left">
-          <img src={registerImg} alt="Imagem ilustrativa" />
-        </div>
-
-        <div className="right">
-          <form onSubmit={handleSubmit(createDonorRequest)}>
-            <Input
-              label="Nome"
-              register={register("name")}
-              type="text"
-              error={errors.name?.message}
-            />
-            <Input
-              label="Email"
-              register={register("email")}
-              type="mail"
-              error={errors.email?.message}
-            />
-            <Input
-              label="Telefone"
-              register={register("contact")}
-              type="tel"
-              error={errors.contact?.message}
-            />
-            <Input
-              label="Endereço"
-              register={register("adress")}
-              type="text"
-              error={errors.adress?.message}
-            />
-            <Input
-              label="Senha"
-              register={register("password")}
-              type="password"
-              error={errors.password?.message}
-            />
-            <Input
-              type="password"
-              label="Confirmar senha"
-              register={register("confirm_password")}
-              error={errors.confirm_password?.message}
-            />
-
-            <button type="submit">Cadastrar</button>
-          </form>
-        </div>
-      </div>
+        <button type="submit">Cadastrar</button>
+      </form>
     </>
   );
 };
