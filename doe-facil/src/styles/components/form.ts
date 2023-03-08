@@ -1,32 +1,30 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyleFormLogin = styled.form`
-    display: flex;
-    flex-direction: column;
-    gap: .8rem;
-    align-items:center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: center;
 
-    margin-top: 2.5rem;
+  margin-top: 2.5rem;
 
-    border-radius: 12px;
+  border-radius: 12px;
 
-    width: 80%;
-    height: 380px;
+  width: 80%;
+  height: 380px;
 
+  background-color: var(--Color-primary-50);
+  color: var(--grey-0);
 
-    background-color: var(--Color-primary-50);
-    color: var(--grey-0);
+  label {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
 
-    label{
-        font-size: 1.2rem;
-        font-weight: 600;
-    }
-
-    @media (min-width: 659px) {
-
-        height: 75%;
-        width: 60%;
+  @media (min-width: 659px) {
+    height: 75%;
+    width: 60%;
 
         
         label{
@@ -81,50 +79,46 @@ export const StyleFormRegister = styled.form`
 `
 
 export const Input = styled.input`
+  padding: 0.6rem;
 
-    padding: .6rem;
-    
-    border-radius: 6px;
-    border: var(--grey-0);
+  border-radius: 6px;
+  border: var(--grey-0);
 
-    ::placeholder{
-        font-size: .8rem;
+  ::placeholder {
+    font-size: 0.8rem;
+  }
+
+  @media (min-width: 659px) {
+    padding: 1rem;
+
+    ::placeholder {
+      font-size: 1rem;
     }
 
-    @media (min-width: 659px) {
-        
-        padding: 1rem;
-
-        ::placeholder{
-            font-size: 1rem;
-        }
-
-        :focus{
-           border: none;
-        }
+    :focus {
+      border: none;
     }
-`
+  }
+`;
 
 export const Button = styled.button`
-    
-    padding: .5rem;
-    
-    width: 80%;
+    padding: 0.5rem;
 
-    border-radius: 6px;
-    border: var(--grey-20);
+width: 80%;
 
-    background-color: var(--grey-20);
-    color: var(--Sucess);
+border-radius: 6px;
+border: var(--grey-20);
 
-    font-size: 1rem;
-    font-weight: 600;
+background-color: var(--grey-20);
+color: var(--Sucess);
 
-    @media (min-width: 659px) {
-        
-        padding: .5rem;
-        margin-top: .5rem;
-        font-size: 1.45rem;
-    }
+font-size: 1rem;
+font-weight: 600;
 
-` 
+  @media (min-width: 659px) {
+      
+      padding: .5rem;
+      margin-top: .5rem;
+      font-size: 1.45rem;
+  }
+`

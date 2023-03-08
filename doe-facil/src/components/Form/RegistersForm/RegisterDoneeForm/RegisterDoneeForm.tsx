@@ -1,35 +1,87 @@
-import { Header } from "../../../Header/Header";
-import registerImg from "../../../../img/registerImg.svg";
 import { Input } from "../../Input/Input";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { schemaDoneeRegister } from "../../../../validators/schemasRegister/schemaDoneeRegister";
-import { Button, StyleFormRegister } from "../../../../styles/components/form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import { UserRequestsContext } from "../../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
+
+export interface iDoneeRegister extends FieldValues {
+  name: string;
+  email: string;
+  contact: string;
+  adress: string;
+  userInCome: string;
+  password: string;
+  confirm_password: string;
+}
 
 export const RegisterDoneeForm = () => {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm(schemaDoneeRegister);
+  } = useForm<iDoneeRegister>({
+    resolver: yupResolver(schemaDoneeRegister),
+  });
+
+  const { createDoneeRequest } = useContext(UserRequestsContext);
+
+  const submitForm: SubmitHandler<iDoneeRegister> = (
+    formData: iDoneeRegister
+  ) => {
+    createDoneeRequest(formData);
+  };
 
   return (
-    
-      
-          <StyleFormRegister>
-            <h1>Criar conta</h1>
-            <Input label={"Nome"} {...register("name")} />
-            <Input label={"Email"} {...register("email")} />
-            <Input label={"Senha"} {...register("password")} />
-            <Input
-              label={"Confirmar senha"}
-              {...register("confirm_password")}
-            />
-            <Input label={"Telefone"} type={"tel"} {...register("contact")} />
-            <Input label={"Renda percapta"} {...register("userInCome")} />
+    <>
+      <form onSubmit={handleSubmit(submitForm)}>
+        <Input
+          label="Nome"
+          register={register("name")}
+          type="text"
+          error={errors.name?.message}
+        />
+        <Input
+          label="Email"
+          register={register("email")}
+          type="mail"
+          error={errors.email?.message}
+        />
+        <Input
+          label="Telefone"
+          type="tel"
+          register={register("contact")}
+          error={errors.contact?.message}
+        />
+        <Input
+          label="Endereço"
+          type="text"
+          register={register("adress")}
+          error={errors.adress?.message}
+        />
+        <div>
+          <select {...register("userInCome")}>
+            <option value="nothing">não ganho renda</option>
+            <option value="min">200R$ a 400R$</option>
+            <option value="mid">400R$ a 600R$</option>
+            <option value="max">600R$ a 800R$</option>
+          </select>
+          <p>{errors.userInCome?.message}</p>
+        </div>
+        <Input
+          label="Senha"
+          register={register("password")}
+          type="password"
+          error={errors.password?.message}
+        />
+        <Input
+          label="Confirmar senha"
+          register={register("confirm_password")}
+          error={errors.confirm_password?.message}
+        />
 
-            <Button>Cadastrar</Button>
-          </StyleFormRegister>
-      
-    
+        <button type="submit">Cadastrar</button>
+      </form>
+    </>
   );
 };

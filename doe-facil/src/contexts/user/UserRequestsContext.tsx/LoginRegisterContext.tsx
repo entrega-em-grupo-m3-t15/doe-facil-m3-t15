@@ -2,8 +2,16 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { API } from "../../../Services/API";
-import { iAxiosError, iUserForm, iUserLoginResponse, iUserRegister } from "../userInterfaces";
+import { API } from "../../../Services/Api";
+
+import {
+  iAxiosError,
+  iDoneeRegister,
+  iDonorRegister,
+  iUserLogin,
+  iUserLoginResponse,
+  iUserRegister,
+} from "../userInterfaces";
 import { iUserRequestsContext } from "./interfaces";
 
 export interface iUserRequestsrProps {
@@ -13,7 +21,7 @@ export interface iUserRequestsrProps {
 export const UserRequestsContext = createContext({} as iUserRequestsContext);
 
 export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<iUserLoginResponse | null>(null);
   const [loading, setLoading] = useState(false);
 
   let userID = localStorage.getItem("@USERID");
@@ -21,9 +29,13 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
   const navigate = useNavigate();
 
-  const createUserRequest = async (data: iUserRegister) => {
+  const createDoneeRequest = async (data: iDoneeRegister) => {
+    const { confirm_password, ...dataRegister } = data;
     try {
-      await API.post<iUserRegister>("/users", data);
+      await API.post("/users", {
+        ...dataRegister,
+        isDonor: false,
+      });
 
       toast.success("Cadastro realizado com sucesso!");
 
@@ -38,7 +50,24 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
     }
   };
 
-  const loginUserRequest = async (data: iUserForm) => {
+  const createDonorRequest = async (data: iDonorRegister) => {
+    const { confirm_password, ...dataRegister } = data;
+    try {
+      await API.post<iUserRegister>("/register", {
+        ...dataRegister,
+        isDonor: true,
+      });
+    } catch (error) {
+      if (axios.isAxiosError<iAxiosError>(error)) {
+        const errorMessage = error.response?.data?.message;
+        toast.error(errorMessage);
+      }
+      console.error(error);
+      toast.error("Não foi possível realizar o cadastro");
+    }
+  };
+
+  const loginUserRequest = async (data: iUserLogin) => {
     try {
       const response = await API.post("/login", data);
 
@@ -52,7 +81,6 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
       setUser(response.data);
 
       navigate(`/main-page/${userID}`);
-      
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -92,7 +120,15 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
   return (
     <UserRequestsContext.Provider
-      value={{ user, setUser, loading, setLoading }}
+      value={{
+        user,
+        setUser,
+        loading,
+        setLoading,
+        createDoneeRequest,
+        createDonorRequest,
+        loginUserRequest,
+      }}
     >
       {children}
     </UserRequestsContext.Provider>
