@@ -9,7 +9,7 @@ export const ProtectedRoutes = () => {
   if (loading) {
     return (
       <div className="loading_theme">
-        <SyncLoader loading={loading} color="#01e400" />
+        <SyncLoader loading={loading} color="#3902ff" />
       </div>
     );
   }

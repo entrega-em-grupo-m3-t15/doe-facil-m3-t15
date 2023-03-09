@@ -1,4 +1,4 @@
-import { createContext, useEffect } from "react";
+import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { iAxiosError } from "../user/userInterfaces";
 import { IUserContextProps, IChildrenProps, iUpdateUser } from "./inteface";
@@ -15,7 +15,6 @@ export const UserProvider = ({ children }: IChildrenProps) => {
   const token = localStorage.getItem("@USERTOKEN");
 
   const deleteUser = async () => {
-
     try {
       const response = await API.delete(`/users/${userId}`, {
         headers: {
@@ -25,7 +24,7 @@ export const UserProvider = ({ children }: IChildrenProps) => {
 
       navigate("/");
 
-      toast.success("Usuário deletado com sucesso!")
+      toast.success("Usuário deletado com sucesso!");
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -37,7 +36,6 @@ export const UserProvider = ({ children }: IChildrenProps) => {
   };
 
   const updateUser = async (data: iUpdateUser) => {
-
     try {
       const response = await API.patch<iUpdateUser>(`/users/${userId}`, data, {
         headers: {
@@ -45,7 +43,7 @@ export const UserProvider = ({ children }: IChildrenProps) => {
         },
       });
 
-      toast.success("Perfil atualizado com sucesso!")
+      toast.success("Perfil atualizado com sucesso!");
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;

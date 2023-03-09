@@ -18,9 +18,6 @@ export const schemaDonorRegister = yup
       .required("preencha o campo"),
 
     adress: yup.string().required("Adicione algo para continuar"),
-    contact: yup
-      .string()
-      .matches(/^\(\d{2}\)\s\d{5}-\d{4}$/, "Insira um numero válido")
-      .required("O número de telefone é obrigatório"),
+    contact: yup.string().required("O número de telefone é obrigatório"),
   })
   .required();

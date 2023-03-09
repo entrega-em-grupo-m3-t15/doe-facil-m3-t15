@@ -9,7 +9,6 @@ export interface iUserRegister {
   email: string;
   contact: string;
   password: string;
-  confirm_password: string;
   error?: string | undefined;
   axiosError: iAxiosError;
 }
@@ -18,6 +17,11 @@ export interface iUserData {
   id: string;
   name: string;
   email: string;
+  contact: string;
+  adress: string;
+  userInCome: string;
+  isDonor: boolean;
+  password: string;
 }
 
 export interface iUserLoginResponse {
@@ -41,9 +45,6 @@ export interface iDoneeRegister {
   password: string;
   confirm_password: string;
 }
-
-export interface iDoneeRegisterDataRequest
-  extends Omit<iDoneeRegister, "confirm_password"> {}
 
 export interface iDonorRegister {
   name: string;
