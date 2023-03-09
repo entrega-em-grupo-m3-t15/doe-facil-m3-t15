@@ -10,7 +10,6 @@ import {
   iDonorRegister,
   iUserLogin,
   iUserLoginResponse,
-  iUserRegister,
 } from "../userInterfaces";
 import { iUserRequestsContext } from "./interfaces";
 
@@ -29,7 +28,7 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
   const navigate = useNavigate();
 
-  const createDoneeRequest = async (
+  const createUserRequest = async (
     data: iDoneeRegister | iDonorRegister,
     isDonor: boolean
   ) => {
@@ -112,7 +111,7 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
         setUser,
         loading,
         setLoading,
-        createDoneeRequest,
+        createUserRequest,
         loginUserRequest,
       }}
     >

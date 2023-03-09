@@ -12,6 +12,7 @@ export interface iDonorRegister extends FieldValues {
   contact: string;
   adress: string;
   password: string;
+  isDonor: boolean;
   confirm_password: string;
 }
 
@@ -24,11 +25,16 @@ export const RegisterDonorForm = () => {
     resolver: yupResolver(schemaDonorRegister),
   });
 
-  const { createDonorRequest } = useContext(UserRequestsContext);
+  const { createUserRequest } = useContext(UserRequestsContext);
+
+  const submitForm: SubmitHandler<iDonorRegister> = (
+    formData: iDonorRegister
+  ) => {
+    createUserRequest(formData, true);
+  };
 
   return (
     <>
-
       <StyleFormRegister onSubmit={handleSubmit(submitForm)}>
         <h1>Crie sua conta</h1>
         <section className="box_inputs">
@@ -69,7 +75,6 @@ export const RegisterDonorForm = () => {
             error={errors.confirm_password?.message}
           />
         </section>
-
 
         <Button type="submit">Cadastrar</Button>
       </StyleFormRegister>

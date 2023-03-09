@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
-import { DetailsModal } from "./Modals/DetailsModal";
+import { DetailsModal } from "../../Modals/UpdateInfoModals/ModalDonation/DetailsModal";
 
 export const DonorCard = () => {
   //Fazer a requisição que mostra as informações dos cards aqui (/users/id) está como user Data no insominia

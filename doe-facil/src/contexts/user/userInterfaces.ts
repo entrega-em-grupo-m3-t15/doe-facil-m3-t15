@@ -41,7 +41,7 @@ export interface iDoneeRegister {
   email: string;
   contact: string;
   adress: string;
-  userInCome: string;
+  userInCome?: string;
   password: string;
   confirm_password: string;
 }

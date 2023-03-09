@@ -13,6 +13,7 @@ export interface iDoneeRegister extends FieldValues {
   adress: string;
   userInCome: string;
   password: string;
+  isDonor: boolean;
   confirm_password: string;
 }
 
@@ -25,12 +26,12 @@ export const RegisterDoneeForm = () => {
     resolver: yupResolver(schemaDoneeRegister),
   });
 
-  const { createDoneeRequest } = useContext(UserRequestsContext);
+  const { createUserRequest } = useContext(UserRequestsContext);
 
   const submitForm: SubmitHandler<iDoneeRegister> = (
     formData: iDoneeRegister
   ) => {
-    createDoneeRequest(formData, true);
+    createUserRequest(formData, false);
   };
 
   return (

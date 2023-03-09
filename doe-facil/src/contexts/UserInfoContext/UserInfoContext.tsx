@@ -16,11 +16,7 @@ export const UserProvider = ({ children }: IChildrenProps) => {
 
   const deleteUser = async () => {
     try {
-      const response = await API.delete(`/users/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await API.delete(`/users/${userId}`);
 
       navigate("/");
 
@@ -37,11 +33,7 @@ export const UserProvider = ({ children }: IChildrenProps) => {
 
   const updateUser = async (data: iUpdateUser) => {
     try {
-      const response = await API.patch<iUpdateUser>(`/users/${userId}`, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await API.patch<iUpdateUser>(`/users/${userId}`, data);
 
       toast.success("Perfil atualizado com sucesso!");
     } catch (error) {
