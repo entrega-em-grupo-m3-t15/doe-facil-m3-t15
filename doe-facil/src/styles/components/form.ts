@@ -47,7 +47,7 @@ export const StyleFormRegister = styled.form`
     border-radius: 12px;
 
     width: 80%;
-    min-height: 575px;
+    min-height: 400px;
 
     padding: 2rem .5rem;
 

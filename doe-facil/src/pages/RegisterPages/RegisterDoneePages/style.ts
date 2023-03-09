@@ -27,20 +27,25 @@ export const StylePageRegister = styled.div`
     }
 
     .box_inputs{
-        height: 90%;
+        max-height: 80%;
+        width: 80%;
+        
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
     }
 
     main{
         display: flex;
         flex-direction: column;
 
-        height: 100%;
+        height: 100vh;
     }
 
     .box_form{
 
         width: 100%;
-        height: 100%;
+        height: 150%;
 
         display: flex;
         flex-direction: column;
@@ -78,7 +83,7 @@ export const StylePageRegister = styled.div`
         }
 
         .wallpaper > img{
-            max-height: 85vh;
+            max-height: 104vh;
             width: 750px;
         }
 
@@ -86,6 +91,16 @@ export const StylePageRegister = styled.div`
             justify-content: center;
             align-items: center;
             background: none;
+
+            height: 130%;
+        }
+
+        .box_inputs{
+            max-height: 80%;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
         }
 
        
