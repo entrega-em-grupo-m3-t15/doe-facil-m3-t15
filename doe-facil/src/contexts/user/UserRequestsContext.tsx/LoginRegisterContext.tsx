@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { API } from "../../../Services/Api";
+import { API } from "../../../Services/api";
 
 import {
   iAxiosError,
@@ -29,34 +29,21 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
   const navigate = useNavigate();
 
-  const createDoneeRequest = async (data: iDoneeRegister) => {
+  const createDoneeRequest = async (
+    data: iDoneeRegister | iDonorRegister,
+    isDonor: boolean
+  ) => {
     const { confirm_password, ...dataRegister } = data;
+    const baseURL = isDonor ? "/register" : "/users";
     try {
-      await API.post("/users", {
+      await API.post(baseURL, {
         ...dataRegister,
-        isDonor: false,
+        isDonor: isDonor,
       });
 
       toast.success("Cadastro realizado com sucesso!");
 
       navigate("/");
-    } catch (error) {
-      if (axios.isAxiosError<iAxiosError>(error)) {
-        const errorMessage = error.response?.data?.message;
-        toast.error(errorMessage);
-      }
-      console.error(error);
-      toast.error("Não foi possível realizar o cadastro");
-    }
-  };
-
-  const createDonorRequest = async (data: iDonorRegister) => {
-    const { confirm_password, ...dataRegister } = data;
-    try {
-      await API.post<iUserRegister>("/register", {
-        ...dataRegister,
-        isDonor: true,
-      });
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -77,6 +64,8 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
       localStorage.setItem("@USERTOKEN", userToken!);
       localStorage.setItem("@USERID", userID!);
 
+      API.defaults.headers.common.Authorization = `Bearer ${userToken}`;
+
       toast.success("Login realizado com sucesso!");
       setUser(response.data);
 
@@ -96,11 +85,9 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
     if (token) {
       try {
-        const response = await API.get(`/users/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        API.defaults.headers.common.Authorization = `Bearer ${userToken}`;
+
+        const response = await API.get(`/users/${userId}`);
 
         setUser(response.data);
       } catch (error) {
@@ -126,7 +113,6 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
         loading,
         setLoading,
         createDoneeRequest,
-        createDonorRequest,
         loginUserRequest,
       }}
     >

@@ -5,6 +5,8 @@ import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
 import { RegisterDoneePage } from "../pages/RegisterPages/RegisterDoneePages";
 import { RegisterDonorPage } from "../pages/RegisterPages/RegisterDonorPage";
+import { UserPage } from "../pages/UserPage";
+import { ProtectedRoutes } from "./protectedRoutes";
 
 export const Router = () => {
   return (
@@ -17,6 +19,10 @@ export const Router = () => {
 
       <Route path="/login" element={<LoginPage />} />
       <Route path="*" element={<NotFoundPage />} />
+
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/userPage/:id" element={<UserPage />} />
+      </Route>
     </Routes>
   );
 };

@@ -26,12 +26,9 @@ export const RegisterDonorForm = () => {
 
   const { createDonorRequest } = useContext(UserRequestsContext);
 
-  const submitForm: SubmitHandler<iDonorRegister> = (
-    formData: iDonorRegister
-  ) => createDonorRequest(formData);
-
   return (
     <>
+
       <StyleFormRegister onSubmit={handleSubmit(submitForm)}>
         <h1>Crie sua conta</h1>
         <section className="box_inputs">
@@ -72,6 +69,7 @@ export const RegisterDonorForm = () => {
             error={errors.confirm_password?.message}
           />
         </section>
+
 
         <Button type="submit">Cadastrar</Button>
       </StyleFormRegister>

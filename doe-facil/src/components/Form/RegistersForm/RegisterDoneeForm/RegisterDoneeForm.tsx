@@ -30,7 +30,7 @@ export const RegisterDoneeForm = () => {
   const submitForm: SubmitHandler<iDoneeRegister> = (
     formData: iDoneeRegister
   ) => {
-    createDoneeRequest(formData);
+    createDoneeRequest(formData, true);
   };
 
   return (
@@ -86,8 +86,7 @@ export const RegisterDoneeForm = () => {
           />
         </section>
 
-        <Button type="submit">Cadastrar</Button>
-      </StyleFormRegister>
-    
+      <Button type="submit">Cadastrar</Button>
+    </StyleFormRegister>
   );
 };

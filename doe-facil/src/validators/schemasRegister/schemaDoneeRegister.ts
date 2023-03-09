@@ -17,13 +17,7 @@ export const schemaDoneeRegister = yup
       .oneOf([yup.ref("password")], "A confirmação deve ser igual a senha")
       .required("preencha o campo"),
     adress: yup.string().required("Adicione algo para continuar"),
-    contact: yup
-      .string()
-      .matches(/^\(\d{2}\)\s\d{5}-\d{4}$/, "Insira um numero válido")
-      .required("O número de telefone é obrigatório"),
-    userInCome: yup
-      .string()
-      .oneOf(["nothing,min, mid, max"], "Selecione uma opção válida")
-      .required("Selecione uma opção"),
+    contact: yup.string().required("O número de telefone é obrigatório"),
+    userInCome: yup.string().required("Selecione uma opção"),
   })
   .required();
