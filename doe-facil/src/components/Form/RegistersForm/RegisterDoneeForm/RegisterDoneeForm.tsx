@@ -37,7 +37,7 @@ export const RegisterDoneeForm = () => {
     
       <StyleFormRegister onSubmit={handleSubmit(submitForm)}>
         <h1>Crie sua conta</h1>
-        <div className="box_inputs">
+        <section className="box_inputs">
 
           <Input
             label="Nome"
@@ -84,7 +84,7 @@ export const RegisterDoneeForm = () => {
             register={register("confirm_password")}
             error={errors.confirm_password?.message}
           />
-        </div>
+        </section>
 
         <Button type="submit">Cadastrar</Button>
       </StyleFormRegister>
