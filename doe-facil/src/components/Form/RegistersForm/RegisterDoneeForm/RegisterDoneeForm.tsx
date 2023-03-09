@@ -30,64 +30,61 @@ export const RegisterDoneeForm = () => {
   const submitForm: SubmitHandler<iDoneeRegister> = (
     formData: iDoneeRegister
   ) => {
-    createDoneeRequest(formData);
+    createDoneeRequest(formData, true);
   };
 
   return (
-    
-      <StyleFormRegister onSubmit={handleSubmit(submitForm)}>
-        <h1>Crie sua conta</h1>
-        <div className="box_inputs">
+    <StyleFormRegister onSubmit={handleSubmit(submitForm)}>
+      <h1>Crie sua conta</h1>
+      <div className="box_inputs">
+        <Input
+          label="Nome"
+          register={register("name")}
+          type="text"
+          error={errors.name?.message}
+        />
+        <Input
+          label="Email"
+          register={register("email")}
+          type="mail"
+          error={errors.email?.message}
+        />
+        <Input
+          label="Telefone"
+          type="tel"
+          register={register("contact")}
+          error={errors.contact?.message}
+        />
+        <Input
+          label="Endereço"
+          type="text"
+          register={register("adress")}
+          error={errors.adress?.message}
+        />
 
-          <Input
-            label="Nome"
-            register={register("name")}
-            type="text"
-            error={errors.name?.message}
-          />
-          <Input
-            label="Email"
-            register={register("email")}
-            type="mail"
-            error={errors.email?.message}
-          />
-          <Input
-            label="Telefone"
-            type="tel"
-            register={register("contact")}
-            error={errors.contact?.message}
-          />
-          <Input
-            label="Endereço"
-            type="text"
-            register={register("adress")}
-            error={errors.adress?.message}
-          />
-          
-          <label>Renda familiar</label>
-          <select {...register("userInCome")}>
-            <option value="nothing">não ganho renda</option>
-            <option value="min">200R$ a 400R$</option>
-            <option value="mid">400R$ a 600R$</option>
-            <option value="max">600R$ a 800R$</option>
-          </select>
-            <p>{errors.userInCome?.message}</p>
-         
-          <Input
-            label="Senha"
-            register={register("password")}
-            type="password"
-            error={errors.password?.message}
-          />
-          <Input
-            label="Confirmar senha"
-            register={register("confirm_password")}
-            error={errors.confirm_password?.message}
-          />
-        </div>
+        <label>Renda familiar</label>
+        <select {...register("userInCome")}>
+          <option value="nothing">não ganho renda</option>
+          <option value="min">200R$ a 400R$</option>
+          <option value="mid">400R$ a 600R$</option>
+          <option value="max">600R$ a 800R$</option>
+        </select>
+        <p>{errors.userInCome?.message}</p>
 
-        <Button type="submit">Cadastrar</Button>
-      </StyleFormRegister>
-    
+        <Input
+          label="Senha"
+          register={register("password")}
+          type="password"
+          error={errors.password?.message}
+        />
+        <Input
+          label="Confirmar senha"
+          register={register("confirm_password")}
+          error={errors.confirm_password?.message}
+        />
+      </div>
+
+      <Button type="submit">Cadastrar</Button>
+    </StyleFormRegister>
   );
 };

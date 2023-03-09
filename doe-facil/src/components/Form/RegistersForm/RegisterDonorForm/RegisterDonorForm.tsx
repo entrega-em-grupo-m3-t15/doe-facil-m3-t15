@@ -26,13 +26,9 @@ export const RegisterDoneeForm = () => {
 
   const { createDonorRequest } = useContext(UserRequestsContext);
 
-  const submitForm: SubmitHandler<iDonorRegister> = (
-    formData: iDonorRegister
-  ) => createDonorRequest(formData);
-
   return (
     <>
-      <form onSubmit={handleSubmit(submitForm)}>
+      <form onSubmit={handleSubmit(createDonorRequest)}>
         <Input
           label="Nome"
           register={register("name")}

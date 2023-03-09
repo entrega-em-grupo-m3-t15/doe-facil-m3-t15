@@ -9,7 +9,7 @@ import {
 } from "./interface";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { API } from "../../Services/Api";
+import { API } from "../../Services/api";
 
 export const DashboardContext = createContext({} as IDashboardContext);
 
@@ -17,18 +17,13 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
   const [donations, setDonations] = useState<IGetDonations[]>([]);
 
   const donationId = localStorage.getItem("@DONATIONID");
-  const token = localStorage.getItem("@USERTOKEN");
 
   useEffect(() => {
     const getDonations = async () => {
       try {
-        const response = await API.get("/donations", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await API.get("/donations");
 
-        // setDonations(response.data)
+        setDonations(response.data);
       } catch (error) {
         if (axios.isAxiosError<iAxiosError>(error)) {
           const errorMessage = error.response?.data?.message;
@@ -43,11 +38,7 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
 
   const registerDonation = async (data: IRegisterDonation) => {
     try {
-      const response = API.post<IRegisterDonation>("/donations", data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await API.post<IRegisterDonation>("/donations", data);
 
       toast.success("Doação cadastrada com sucesso!");
     } catch (error) {
@@ -62,14 +53,9 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
 
   const updateDonation = async (data: IUpdateDonation) => {
     try {
-      const response = API.patch<IUpdateDonation>(
+      const response = await API.patch<IUpdateDonation>(
         `/donations/${donationId}`,
-        data,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        data
       );
 
       toast.success("Doação atualizada com sucesso!");
@@ -85,11 +71,7 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
 
   const deleteDonation = async () => {
     try {
-      const response = API.delete(`/donations/${donationId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await API.delete(`/donations/${donationId}`);
       toast.success("Doação deletada com sucesso!");
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
