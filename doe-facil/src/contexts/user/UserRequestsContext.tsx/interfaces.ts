@@ -13,7 +13,7 @@ export interface iUserRequestsContext {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 
-  createDoneeRequest: (
+  createUserRequest: (
     data: iDoneeRegister,
     isDonor: boolean
   ) => Promise<iAxiosError | void>;

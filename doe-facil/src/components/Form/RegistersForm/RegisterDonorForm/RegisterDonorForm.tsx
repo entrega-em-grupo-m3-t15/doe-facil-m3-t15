@@ -1,10 +1,9 @@
 import { Input } from "../../Input/Input";
-import { useForm } from "react-hook-form/dist/useForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaDonorRegister } from "../../../../validators/schemasRegister/schemaDonorRegister";
 import { useContext } from "react";
 import { UserRequestsContext } from "../../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
-import { FieldValues, SubmitHandler } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 export interface iDonorRegister extends FieldValues {
   name: string;
@@ -12,6 +11,7 @@ export interface iDonorRegister extends FieldValues {
   contact: string;
   adress: string;
   password: string;
+  isDonor: boolean;
   confirm_password: string;
 }
 
@@ -24,11 +24,17 @@ export const RegisterDoneeForm = () => {
     resolver: yupResolver(schemaDonorRegister),
   });
 
-  const { createDonorRequest } = useContext(UserRequestsContext);
+  const { createUserRequest } = useContext(UserRequestsContext);
+
+  const submitForm: SubmitHandler<iDonorRegister> = (
+    formData: iDonorRegister
+  ) => {
+    createUserRequest(formData, true);
+  };
 
   return (
     <>
-      <form onSubmit={handleSubmit(createDonorRequest)}>
+      <form onSubmit={handleSubmit(submitForm)}>
         <Input
           label="Nome"
           register={register("name")}
