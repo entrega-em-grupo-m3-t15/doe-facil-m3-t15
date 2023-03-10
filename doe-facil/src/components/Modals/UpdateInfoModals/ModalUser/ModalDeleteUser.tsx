@@ -1,32 +1,23 @@
 import { useContext } from "react";
 import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
+import { UserContext } from "../../../../contexts/UserInfoContext/UserInfoContext";
 
 export const ModalDeleteUser = () => {
   const { setEspecialModalIsOpen } = useContext(ModalsContext);
+  const { deleteUser } = useContext(UserContext);
   return (
     <dialog>
       <div>
         <header>
           <button onClick={() => setEspecialModalIsOpen("")}>X</button>
-          <h2>Disponível para resgate</h2>
+          <h2>Deletar conta</h2>
         </header>
 
         <main>
-          <div className="container_card">
-            <div className="left">
-              <img src="" alt="imagem da doação" />
-            </div>
-            <div className="right">
-              <h4>Nome do card</h4>
+          <h3>Deseja realmente deletar sua conta?</h3>
 
-              <div>
-                {/* nesses buttons, preciso ver como ediatr somente isso se eu quiser, e ter a opção de alterar tudo também */}
-                <button>Roupas</button>
-                <button>Alimento</button>
-              </div>
-            </div>
-            <button>Salvar</button>
-          </div>
+          <button onClick={() => setEspecialModalIsOpen("")}>Não</button>
+          <button onClick={() => deleteUser}>Sim</button>
         </main>
       </div>
     </dialog>
