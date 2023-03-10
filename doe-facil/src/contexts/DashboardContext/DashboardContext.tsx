@@ -18,12 +18,19 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
   const [donationsUser , setDonationsUser] = useState<IGetDonations[]>([])
 
   const donationId = localStorage.getItem("@DONATIONID");
+  const userToken = localStorage.getItem("@USERTOKEN");
   const userId = localStorage.getItem("@USERID");
 
   useEffect(() => {
     const getDonations = async () => {
       try {
-        const response = await API.get("/donations");
+        const response = await API.get("/donations", {
+          headers: {
+            Authorization: `Bearer ${userToken}`
+          }
+        });
+
+        
 
         setDonations(response.data);
       } catch (error) {
