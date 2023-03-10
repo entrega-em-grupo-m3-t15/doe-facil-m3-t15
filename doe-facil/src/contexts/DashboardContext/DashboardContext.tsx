@@ -47,7 +47,11 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
 
   const getDonationsUser = async () => {
     try {
-      const response = await API.get(`/users/${userId}`);
+      const response = await API.get(`/users/${userId}`,{
+        headers: {
+          Authorization: `Bearer ${userToken}`
+        }
+      });
 
       setDonationsUser(response.data);
     } catch (error) {
