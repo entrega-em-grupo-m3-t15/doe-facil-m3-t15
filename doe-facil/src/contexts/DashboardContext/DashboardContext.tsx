@@ -15,8 +15,10 @@ export const DashboardContext = createContext({} as IDashboardContext);
 
 export const DashboardProvider = ({ children }: IChildrenProps) => {
   const [donations, setDonations] = useState<IGetDonations[]>([]);
+  const [donationsUser , setDonationsUser] = useState<IGetDonations[]>([])
 
   const donationId = localStorage.getItem("@DONATIONID");
+  const userId = localStorage.getItem("@USERID");
 
   useEffect(() => {
     const getDonations = async () => {
@@ -35,6 +37,21 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
     };
     getDonations();
   }, []);
+
+  const getDonationsUser = async () => {
+    try {
+      const response = await API.get(`/users/${userId}`);
+
+      setDonationsUser(response.data);
+    } catch (error) {
+      if (axios.isAxiosError<iAxiosError>(error)) {
+        const errorMessage = error.response?.data?.message;
+        toast.error(errorMessage);
+      }
+
+      console.error(error);
+    }
+  };
 
   const registerDonation = async (data: IRegisterDonation) => {
     try {
