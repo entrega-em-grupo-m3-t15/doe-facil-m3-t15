@@ -66,9 +66,10 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
       API.defaults.headers.common.Authorization = `Bearer ${userToken}`;
 
       toast.success("Login realizado com sucesso!");
+      
       setUser(response.data);
-
-      navigate(`/main-page/${userID}`);
+      
+      navigate(`/userPage`);
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
