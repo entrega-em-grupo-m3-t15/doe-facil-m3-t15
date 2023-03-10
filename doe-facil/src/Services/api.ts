@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const API = axios.create({
-  baseURL: "https://doe-facil-server.onrender.com",
+  baseURL: "https://localhost:3001",
   timeout: 5000,
 });
