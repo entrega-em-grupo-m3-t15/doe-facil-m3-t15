@@ -2,8 +2,7 @@ import { ChangeEvent, useContext, useState } from "react";
 import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
 
 export const EditModal = () => {
-  const { especialModalIsOpen, setEspecialModalIsOpen } =
-    useContext(ModalsContext);
+  const { setEspecialModalIsOpen } = useContext(ModalsContext);
   const [cardDescription, setCardDescription] = useState("");
 
   const handleCardDescriptionChange = (
