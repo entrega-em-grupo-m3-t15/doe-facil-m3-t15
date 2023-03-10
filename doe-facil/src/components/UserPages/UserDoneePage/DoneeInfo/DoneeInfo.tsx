@@ -3,7 +3,7 @@ import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext"
 import { UserRequestsContext } from "../../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
 import { ModalUpdateUser } from "../../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser";
 
-export const UserInfo = () => {
+export const DonneInfo = () => {
   const { user } = useContext(UserRequestsContext);
   const { especialModalIsOpen, setEspecialModalIsOpen } =
     useContext(ModalsContext);

@@ -1,11 +1,11 @@
-import { DoneeInfo } from "./DoneeInfo/DoneeInfo";
+import { DonneInfo } from "./DoneeInfo/DoneeInfo";
 
 export const UserDoneePage = () => {
   //Aqui eu devo pegar as doaçãoes do donee mas não sei se tem uma rota só para isso
   return (
     <div className="container">
       <div className="left">
-        <DoneeInfo />
+        <DonneInfo />
       </div>
       <div className="right">
         <main>

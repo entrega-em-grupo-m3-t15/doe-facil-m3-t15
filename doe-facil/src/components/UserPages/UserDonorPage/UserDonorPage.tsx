@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { UserInfo } from "../UserDoneePage/DoneeInfo/DoneeInfo";
+import { DonneInfo } from "../UserDoneePage/DoneeInfo/DoneeInfo";
 import logo from "../../../img/logo.svg";
 
 export const UserDonorPage = () => {
@@ -20,7 +20,7 @@ export const UserDonorPage = () => {
       <div className="container">
         <main>
           <div className="box_profile">
-            <UserInfo />
+            <DonneInfo />
           </div>
           <div className="box_cards">
             
