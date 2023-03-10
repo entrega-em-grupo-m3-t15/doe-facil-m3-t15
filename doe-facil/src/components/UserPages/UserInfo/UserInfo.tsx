@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
-import { UserRequestsContext } from "../../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
-import { ModalUpdateUser } from "../../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser";
+import { BiUserCircle } from "react-icons/bi";
+import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
+import { UserRequestsContext } from "../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
+import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser";
 
-export const DoneeInfo = () => {
+export const UserInfo = () => {
   const { user } = useContext(UserRequestsContext);
   const { especialModalIsOpen, setEspecialModalIsOpen } =
     useContext(ModalsContext);
@@ -20,7 +21,7 @@ export const DoneeInfo = () => {
           </button>
         </header>
 
-        <img src="" alt="Imagem de perfil" />
+        <BiUserCircle />
         <h2>{user?.user.name}</h2>
       </div>
 
