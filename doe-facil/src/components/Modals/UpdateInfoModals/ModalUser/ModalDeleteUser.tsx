@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
 
-export const ModalUpdateUser = () => {
+export const ModalDeleteUser = () => {
   const { setEspecialModalIsOpen } = useContext(ModalsContext);
   return (
     <dialog>
@@ -19,7 +19,11 @@ export const ModalUpdateUser = () => {
             <div className="right">
               <h4>Nome do card</h4>
 
-              <div>aqui deve ficar se o card é roupa ou alimento</div>
+              <div>
+                {/* nesses buttons, preciso ver como ediatr somente isso se eu quiser, e ter a opção de alterar tudo também */}
+                <button>Roupas</button>
+                <button>Alimento</button>
+              </div>
             </div>
             <button>Salvar</button>
           </div>
