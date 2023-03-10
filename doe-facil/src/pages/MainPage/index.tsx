@@ -19,7 +19,7 @@ export const MainPage = () => {
           to={
             user?.user.isDonor
               ? `/userPage/donor/${user?.user.id}`
-              : `/userPage/donee/${user?.user.id}}`
+              : `/userPage/donee/${user?.user.id}`
           }
         >
           Perfil
@@ -44,12 +44,11 @@ export const MainPage = () => {
 
         <ul>
           {donations.map((donation, index) => {
-            // se for donatario {onClick=true} se não onClick={false}
             return (
               <li key={index}>
                 <p>{donation.name}</p>
                 <p>{donation.amount}</p>
-                <button>abrir um modal com os detalhes do card</button>
+                <button>Detalhes</button>
               </li>
             );
           })}

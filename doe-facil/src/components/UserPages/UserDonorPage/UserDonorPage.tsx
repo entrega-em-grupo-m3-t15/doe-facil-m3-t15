@@ -1,10 +1,10 @@
-import { DoneeInfo } from "../UserDoneePage/DoneeInfo/DoneeInfo";
+import { UserInfo } from "../UserInfo/UserInfo";
 
 export const UserDonorPage = () => {
   return (
     <div className="container">
       <div className="left">
-        <DoneeInfo />
+        <UserInfo />
       </div>
       <div className="right">
         <main>

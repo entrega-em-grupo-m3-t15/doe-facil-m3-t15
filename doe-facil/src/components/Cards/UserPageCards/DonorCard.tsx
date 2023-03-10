@@ -1,18 +1,24 @@
 import { useContext } from "react";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
-import { DetailsModal } from "../../Modals/UpdateInfoModals/ModalDonation/DetailsModal";
+import { DeleteModal } from "../../Modals/UpdateInfoModals/ModalDonation/DeleteModal";
+import { EditModal } from "../../Modals/UpdateInfoModals/ModalDonation/EditModal";
 
 export const DonorCard = () => {
   //Fazer a requisição que mostra as informações dos cards aqui (/users/id) está como user Data no insominia
   //devo ver a lógica como colocar esse boleano de isAvaliable no insomonia
 
-  const { isOpenModal, setIsOpenModal } = useContext(ModalsContext);
+  const { especialModalIsOpen, setEspecialModalIsOpen } =
+    useContext(ModalsContext);
 
-  isOpenModal && <DetailsModal />;
+  especialModalIsOpen == "editModal" && <EditModal />;
+  especialModalIsOpen == "deleteModal" && <DeleteModal />;
+
   return (
     <div>
       <header>
+        {/* deve ser dinamico */}
         <h2>Disponível para resgate</h2>
+        <h2>lá resgatado</h2>
       </header>
 
       <main>
@@ -24,8 +30,15 @@ export const DonorCard = () => {
             <h4>Nome do card</h4>
             <p>Description do card</p>
           </div>
+          <div>
+            <button onClick={() => setEspecialModalIsOpen("editModal")}>
+              Editar
+            </button>
+            <button onClick={() => setEspecialModalIsOpen("deleteModal")}>
+              Excluir
+            </button>
+          </div>
         </div>
-        <button onClick={() => setIsOpenModal(true)}>Detalhes</button>
       </main>
     </div>
   );
