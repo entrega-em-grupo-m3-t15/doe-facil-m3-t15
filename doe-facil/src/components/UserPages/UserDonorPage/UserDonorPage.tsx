@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-import { DonneInfo } from "../UserDoneePage/DoneeInfo/DoneeInfo";
-import logo from "../../../img/logo.svg";
+import { UserInfo } from "../UserInfo/UserInfo";
 
 export const UserDonorPage = () => {
   return (
