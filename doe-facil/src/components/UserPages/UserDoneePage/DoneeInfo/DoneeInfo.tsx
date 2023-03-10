@@ -1,16 +1,14 @@
 import { useContext } from "react";
 import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
 import { UserRequestsContext } from "../../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
-import { EditModal } from "../../../Modals/UpdateInfoModals/ModalDonation/EditModal";
+import { ModalUpdateUser } from "../../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser";
 
 export const DoneeInfo = () => {
   const { user } = useContext(UserRequestsContext);
   const { especialModalIsOpen, setEspecialModalIsOpen } =
     useContext(ModalsContext);
 
-  console.log(user);
-
-  especialModalIsOpen
+  especialModalIsOpen == "editUser" && <ModalUpdateUser />;
 
   return (
     <>

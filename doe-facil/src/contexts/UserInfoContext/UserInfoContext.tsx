@@ -12,7 +12,6 @@ export const UserProvider = ({ children }: IChildrenProps) => {
   const navigate = useNavigate();
 
   const userId = localStorage.getItem("@USERID");
-  const token = localStorage.getItem("@USERTOKEN");
 
   const deleteUser = async () => {
     try {

@@ -3,8 +3,6 @@ import { DashboardContext } from "../../../../contexts/DashboardContext/Dashboar
 import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
 
 export const DeleteModal = () => {
-  //Acrediuto que preciso receber o id do modal que eu clicar
-
   const { setEspecialModalIsOpen } = useContext(ModalsContext);
   const { deleteDonation } = useContext(DashboardContext);
 

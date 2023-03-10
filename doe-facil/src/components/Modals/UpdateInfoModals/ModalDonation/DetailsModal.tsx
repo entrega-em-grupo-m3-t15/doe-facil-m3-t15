@@ -1,19 +1,29 @@
 import { useContext } from "react";
+import { DashboardContext } from "../../../../contexts/DashboardContext/DashboardContext";
 import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
 
 export const DetailsModal = () => {
   //pegar as informações do DoneeCard
 
   const { isOpenModal, setIsOpenModal } = useContext(ModalsContext);
+  const { donations } = useContext(DashboardContext);
 
   return (
     <dialog open={isOpenModal}>
       <div>
-        <div>
-          <button onClick={() => setIsOpenModal(false)}>X</button>
-          <h2>Título do card</h2>
-        </div>
-        <p>Descrição do card</p>
+        <button onClick={() => setIsOpenModal(false)}>X</button>
+        {donations.map((element) => {
+          return (
+            <div>
+              <div>{element.image}</div>
+              <div>
+                <h2>{element.name}</h2>
+                <p>{element.description}</p>
+                <p>{element.amount}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </dialog>
   );

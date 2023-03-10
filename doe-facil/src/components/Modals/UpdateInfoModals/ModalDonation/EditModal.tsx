@@ -16,7 +16,7 @@ export const EditModal = () => {
       <div>
         <header>
           <button onClick={() => setEspecialModalIsOpen("")}>X</button>
-          <h2>Disponível para resgate</h2>
+          <h2>Editar Doação</h2>
         </header>
 
         <main>
@@ -28,9 +28,7 @@ export const EditModal = () => {
               <h4>Nome do card</h4>
 
               <div>
-                {/* nesses buttons, preciso ver como ediatr somente isso se eu quiser, e ter a opção de alterar tudo também */}
-                <button>Roupas</button>
-                <button>Alimento</button>
+                <h3>aqui deve ficar se ele é roupa ou alimento</h3>
               </div>
               <textarea
                 cols={30}
