@@ -2,7 +2,6 @@ import { SetStateAction } from "react";
 import {
   iAxiosError,
   iDoneeRegister,
-  iDonorRegister,
   iUserLogin,
   iUserLoginResponse,
 } from "../userInterfaces";

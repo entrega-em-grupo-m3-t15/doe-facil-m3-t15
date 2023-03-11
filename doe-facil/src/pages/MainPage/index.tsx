@@ -3,6 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserRequestsContext } from "../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
 import { BiUserCircle } from "react-icons/bi";
 import { DashboardContext } from "../../contexts/DashboardContext/DashboardContext";
+import { MainPageCard } from "../../components/Cards/MainPageCards/DoneeCard";
+import {
+  StyledCardListMain,
+  StyledContainerMobile,
+  StyledHeaderMain,
+} from "./style";
 
 export const MainPage = () => {
   const { user } = useContext(UserRequestsContext);
@@ -10,10 +16,16 @@ export const MainPage = () => {
 
   const navigate = useNavigate();
 
+  const logoutUser = () => {
+    localStorage.removeItem("@USERID");
+    localStorage.removeItem("@USERTOKEN");
+    navigate("/");
+  };
+
   return (
-    <>
-      <header>
-        <Link to={"/"}>Sair</Link>
+    <StyledContainerMobile>
+      <StyledHeaderMain>
+        <button onClick={() => logoutUser}>Sair</button>
 
         <Link
           to={
@@ -24,36 +36,30 @@ export const MainPage = () => {
         >
           Perfil
         </Link>
-      </header>
+      </StyledHeaderMain>
 
-      <section>
+      <StyledHeaderMain>
         <div>
           <div onClick={() => navigate("userPage/:id")}>
             <BiUserCircle />
           </div>
 
-          <div>
+          <div className="user_information">
             <h2>{user?.user.email}</h2>
             <p>{user?.user.contact}</p>
           </div>
         </div>
-      </section>
+      </StyledHeaderMain>
 
       <main>
         <h2>Doações</h2>
 
-        <ul>
+        <StyledCardListMain>
           {donations.map((donation, index) => {
-            return (
-              <li key={index}>
-                <p>{donation.name}</p>
-                <p>{donation.amount}</p>
-                <button>Detalhes</button>
-              </li>
-            );
+            return <MainPageCard donation={donation} key={index} />;
           })}
-        </ul>
+        </StyledCardListMain>
       </main>
-    </>
+    </StyledContainerMobile>
   );
 };
