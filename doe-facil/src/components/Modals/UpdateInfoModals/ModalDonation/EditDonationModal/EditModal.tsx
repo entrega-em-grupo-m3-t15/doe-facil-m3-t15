@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext, useState } from "react";
-import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
+import { ModalsContext } from "../../../../../contexts/ModalsContext/ModalsContext";
 
 export const EditModal = () => {
   const { setEspecialModalIsOpen } = useContext(ModalsContext);

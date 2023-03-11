@@ -3,7 +3,7 @@ import { ICardDonation } from "../../../contexts/DashboardContext/interface";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
 import { UserRequestsContext } from "../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
 import { CollectModal } from "../../Modals/MainPageModal/CollectModal";
-import { DetailsModal } from "../../Modals/UpdateInfoModals/ModalDonation/DetailsModal";
+import { DetailsModal } from "../../Modals/UpdateInfoModals/ModalDonation/DetailsDonationModal/DetailsModal";
 
 export const MainPageCard = ({ donation }: ICardDonation) => {
   //Fazer a requisição que mostra as informações dos cards aqui (/users/id) está como user Data no insominia
@@ -23,7 +23,7 @@ export const MainPageCard = ({ donation }: ICardDonation) => {
         !user?.user.isDonor && setEspecialModalIsOpen("collectModal")
       }
     >
-      <div>
+      <div className="card_title">
         <h2>Disponível para resgate</h2>
       </div>
       <main>

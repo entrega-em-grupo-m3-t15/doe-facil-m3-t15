@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
+import notFoundImage from "../../img/404.jpg";
+import { StyledNotFoundPage } from "./style";
 
 export const NotFoundPage = () => {
   return (
-    <>
-      <h1>404</h1>
-      <h3>Página não encontrada</h3>
+    <StyledNotFoundPage>
+      <img src={notFoundImage} alt="Página não encontrada icone" />
 
       <Link to={"/"}>Voltar</Link>
-    </>
+    </StyledNotFoundPage>
   );
 };
