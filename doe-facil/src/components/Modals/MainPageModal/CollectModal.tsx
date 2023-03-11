@@ -8,16 +8,21 @@ export const CollectModal = ({ cardId }: IAddProductToUser) => {
   const { addDonationToUser } = useContext(DashboardContext);
   return (
     <dialog open={isOpenModal}>
-      <div>
+      <div className="container_collectModal">
         <header>
           <button onClick={() => setIsOpenModal(false)}>X</button>
           <h2>Resgatar doação?</h2>
         </header>
 
         <main>
-          <div>
-            <button onClick={() => setIsOpenModal(false)}>Não</button>
-            <button onClick={() => addDonationToUser({ cardId: cardId })}>
+          <div className="buttons_collectModal">
+            <button className="button_no" onClick={() => setIsOpenModal(false)}>
+              Não
+            </button>
+            <button
+              className="button_yes"
+              onClick={() => addDonationToUser({ cardId: cardId })}
+            >
               Sim
             </button>
           </div>

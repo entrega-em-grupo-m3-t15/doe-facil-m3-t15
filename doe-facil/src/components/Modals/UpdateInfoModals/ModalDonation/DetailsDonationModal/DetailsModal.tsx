@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { DashboardContext } from "../../../../contexts/DashboardContext/DashboardContext";
-import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
+import { DashboardContext } from "../../../../../contexts/DashboardContext/DashboardContext";
+import { ModalsContext } from "../../../../../contexts/ModalsContext/ModalsContext";
 
 export const DetailsModal = () => {
   const { isOpenModal, setIsOpenModal } = useContext(ModalsContext);
