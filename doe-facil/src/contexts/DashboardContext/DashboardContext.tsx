@@ -53,7 +53,7 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
         }
       });
 
-      setDonationsUser(response.data);
+      setDonationsUser(response.data.donations);
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -119,6 +119,8 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
         registerDonation,
         updateDonation,
         deleteDonation,
+        getDonationsUser,
+        donationsUser,
       }}
     >
       {children}

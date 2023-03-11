@@ -27,7 +27,9 @@ export interface IDashboardContext {
   setDonations: React.Dispatch<React.SetStateAction<IGetDonations[]>>;
   registerDonation: (data: IRegisterDonation) => void;    
   updateDonation: (data: IUpdateDonation) => void;
-  deleteDonation: () => void
+  deleteDonation: () => void;
+  getDonationsUser: () => Promise<void>;
+  donationsUser: IGetDonations[];
 }
 
 export interface IChildrenProps {

@@ -1,19 +1,42 @@
+import { Link } from "react-router-dom";
+import { StyleUserPage, StyleHeaderUserPage } from "../UserDonorPage/style";
 import { UserInfo } from "../UserInfo/UserInfo";
+import logo from "../../../img/logo.svg";
+import ListDonationDonee from "./ListDonationDonee";
 
 export const UserDoneePage = () => {
-  //Aqui eu devo pegar as doaçãoes do donee mas não sei se tem uma rota só para isso
+  
   return (
-    <div className="container">
-      <div className="left">
-        <UserInfo />
-      </div>
-      <div className="right">
+    <StyleUserPage>
+      <StyleHeaderUserPage>
+        <div className="container">
+          <div className="box_header">
+            <div className="logo">
+              <img src={logo} alt="logo" />
+            </div>
+            <div>
+              <nav>
+                <Link to="/userPage">Voltar</Link>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </StyleHeaderUserPage>
+
+      <div className="container">
         <main>
-          <ul>
-            <li>Aqui deve ficar os cards</li>
-          </ul>
+          <div className="box_profile-main">
+            <div className="box_info">
+              <UserInfo />
+            </div>
+           <section>
+              <div className="box_cards">
+                <ListDonationDonee/>
+              </div>
+           </section>
+          </div>
         </main>
       </div>
-    </div>
+    </StyleUserPage>
   );
 };
