@@ -35,15 +35,12 @@ export const UserInfo = () => {
         <h2>Informações</h2>
         <ul>
           <li>
-            
             <span>Contato:</span> {user?.user.contact}
           </li>
           <li>
-            
             <span>Endereço:</span> {user?.user.adress}
           </li>
           <li>
-            
             <span> E-mail:</span> {user?.user.email}
           </li>
         </ul>
