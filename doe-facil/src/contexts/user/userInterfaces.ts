@@ -1,3 +1,5 @@
+import { IGetDonations } from "../DashboardContext/interface";
+
 export interface iAxiosError {
   status: string;
   message: string;
@@ -22,6 +24,7 @@ export interface iUserData {
   userInCome: string;
   isDonor: boolean;
   password: string;
+  donations?: IGetDonations[];
 }
 
 export interface iUserLoginResponse {
