@@ -6,7 +6,7 @@ import { UserRequestsContext } from "../../contexts/user/UserRequestsContext.tsx
 export const UserPage = () => {
   const { user } = useContext(UserRequestsContext);
 
-  if (user?.user.isDonor) {
+  if (user?.user?.isDonor) {
     return <UserDonorPage />;
   } else {
     return <UserDoneePage />;
