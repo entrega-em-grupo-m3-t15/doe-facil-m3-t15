@@ -1,10 +1,11 @@
 import { useContext } from "react";
+import { ICardDonation } from "../../../contexts/DashboardContext/interface";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
 import { UserRequestsContext } from "../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
 import { CollectModal } from "../../Modals/MainPageModal/CollectModal";
 import { DetailsModal } from "../../Modals/UpdateInfoModals/ModalDonation/DetailsModal";
 
-export const MainPageCard = () => {
+export const MainPageCard = ({ donation }: ICardDonation) => {
   //Fazer a requisição que mostra as informações dos cards aqui (/users/id) está como user Data no insominia
   //devo ver a lógica como colocar esse boleano de isAvaliable no insomonia
 
@@ -31,14 +32,17 @@ export const MainPageCard = () => {
             <img src="" alt="imagem da doação" />
           </div>
           <div className="right">
-            <h4>Nome do card</h4>
-            <p>Description do card</p>
+            <h4>{donation.name}</h4>
+            <p>{donation.description}</p>
+            <p>{donation.amount}</p>
           </div>
         </div>
         <button onClick={() => setIsOpenModal(true)}>Detalhes</button>
       </main>
       {isOpenModal && <DetailsModal />}
-      {especialModalIsOpen == "collectModal" && <CollectModal />}
+      {especialModalIsOpen == "collectModal" && (
+        <CollectModal cardId={donation.id} />
+      )}
     </li>
   );
 };

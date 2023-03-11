@@ -1,21 +1,25 @@
 import { useContext } from "react";
+import { DashboardContext } from "../../../contexts/DashboardContext/DashboardContext";
+import { IAddProductToUser } from "../../../contexts/DashboardContext/interface";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
 
-export const CollectModal = () => {
+export const CollectModal = ({ cardId }: IAddProductToUser) => {
   const { isOpenModal, setIsOpenModal } = useContext(ModalsContext);
+  const { addDonationToUser } = useContext(DashboardContext);
   return (
     <dialog open={isOpenModal}>
       <div>
         <header>
           <button onClick={() => setIsOpenModal(false)}>X</button>
-          <h2>resgatar doação?</h2>
+          <h2>Resgatar doação?</h2>
         </header>
 
         <main>
           <div>
             <button onClick={() => setIsOpenModal(false)}>Não</button>
-            {/* Aqui deve ficar a funionalidade de resgatar o modal */}
-            <button>Sim</button>
+            <button onClick={() => addDonationToUser({ cardId: cardId })}>
+              Sim
+            </button>
           </div>
         </main>
       </div>

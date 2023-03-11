@@ -3,8 +3,6 @@ import { DashboardContext } from "../../../../contexts/DashboardContext/Dashboar
 import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
 
 export const DetailsModal = () => {
-  //pegar as informações do DoneeCard
-
   const { isOpenModal, setIsOpenModal } = useContext(ModalsContext);
   const { donations } = useContext(DashboardContext);
 
