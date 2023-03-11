@@ -6,8 +6,6 @@ import { LoginForm } from '../../components/Form/LoginForm';
 
 export const LoginPage = () => {
 
-  /* <h1> você está na LoginPage</h1>; */
-
   return(
 
     <StylePageLogin>
