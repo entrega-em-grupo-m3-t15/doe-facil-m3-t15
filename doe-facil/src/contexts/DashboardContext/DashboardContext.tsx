@@ -17,10 +17,11 @@ export const DashboardContext = createContext({} as IDashboardContext);
 
 export const DashboardProvider = ({ children }: IChildrenProps) => {
   const [donations, setDonations] = useState<IGetDonations[]>([]);
-  const [donationsUser , setDonationsUser] = useState<IGetDonations[]>([])
+  const [donationsUser, setDonationsUser] = useState<IGetDonations[]>([]);
+  const [isClothes, setIsClothes] = useState(false);
 
-  const donationId = localStorage.getItem("@DONATIONID");
   const userToken = localStorage.getItem("@USERTOKEN");
+  const donationId = localStorage.getItem("@DONATIONID");
   const userId = localStorage.getItem("USERID");
 
   const { user } = useContext(UserRequestsContext);
@@ -49,10 +50,10 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
 
   const getDonationsUser = async () => {
     try {
-      const response = await API.get(`/users/${userId}`,{
+      const response = await API.get(`/users/${userId}`, {
         headers: {
-          Authorization: `Bearer ${userToken}`
-        }
+          Authorization: `Bearer ${userToken}`,
+        },
       });
 
       setDonationsUser(response.data.donations);
@@ -68,7 +69,8 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
 
   const registerDonation = async (data: IRegisterDonation) => {
     try {
-      const response = await API.post<IRegisterDonation>("/donations", data);
+      const donationData = { ...data, isAvailable: true };
+      await API.post<IRegisterDonation>("/donations", donationData);
 
       toast.success("Doação cadastrada com sucesso!");
     } catch (error) {
@@ -166,6 +168,8 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
       value={{
         donations,
         setDonations,
+        isClothes,
+        setIsClothes,
         registerDonation,
         addDonationToUser,
         updateDonation,

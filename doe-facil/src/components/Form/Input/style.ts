@@ -1,26 +1,24 @@
 import styled from "styled-components";
 
 export const Input = styled.input`
+  padding: 0.6rem;
 
-    padding: .6rem;
-    
-    border-radius: 6px;
-    border: var(--grey-0);
+  border-radius: 6px;
+  border: var(--grey-0);
 
-    ::placeholder{
-        font-size: .8rem;
+  ::placeholder {
+    font-size: 0.8rem;
+  }
+
+  @media (min-width: 659px) {
+    padding: 1rem;
+
+    ::placeholder {
+      font-size: 1rem;
     }
 
-    @media (min-width: 659px) {
-        
-        padding: 1rem;
-
-        ::placeholder{
-            font-size: 1rem;
-        }
-
-        :focus{
-           border: none;
-        }
+    :focus {
+      border: none;
     }
-`
+  }
+`;

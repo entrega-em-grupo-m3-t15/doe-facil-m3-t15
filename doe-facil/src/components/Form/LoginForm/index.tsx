@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { schemaLoginUser } from "../../../validators/schemaLogin";
+import { schemaLoginUser } from "../../../validators/schemasRegister/schemaLogin";
 import { Input } from "../Input/Input";
 import { useContext } from "react";
 import { UserRequestsContext } from "../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
@@ -27,27 +27,24 @@ export const LoginForm = () => {
   };
 
   return (
-    
-      <StyleFormLogin onSubmit={handleSubmit(submitForm)}>
-        <h1>Login</h1>
-        <div>
-          <Input
-            label="Email"
-            register={register("email")}
-            type="mail"
-            error={errors.email?.message}
-          />
-          <Input
-            label="Senha"
-            register={register("password")}
-            type="password"
-            error={errors.password?.message}
-          />
+    <StyleFormLogin onSubmit={handleSubmit(submitForm)}>
+      <h1>Login</h1>
+      <div>
+        <Input
+          label="Email"
+          register={register("email")}
+          type="mail"
+          error={errors.email?.message}
+        />
+        <Input
+          label="Senha"
+          register={register("password")}
+          type="password"
+          error={errors.password?.message}
+        />
+      </div>
 
-        </div>
-
-        <Button type="submit">Entrar</Button>
-      </StyleFormLogin>
-    
+      <Button type="submit">Entrar</Button>
+    </StyleFormLogin>
   );
 };

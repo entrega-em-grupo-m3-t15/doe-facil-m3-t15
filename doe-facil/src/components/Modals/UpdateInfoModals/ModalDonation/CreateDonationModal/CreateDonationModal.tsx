@@ -7,7 +7,10 @@ import { ModalsContext } from "../../../../../contexts/ModalsContext/ModalsConte
 import { schemaCreateDonation } from "../../../../../validators/UserLogged/schemaCreateDonation";
 import { Input } from "../../../../Form/Input/Input";
 
-export const EditModal = () => {
+export const CreateDonationModal = () => {
+  const { setEspecialModalIsOpen } = useContext(ModalsContext);
+  const { registerDonation, setIsClothes } = useContext(DashboardContext);
+
   const {
     register,
     handleSubmit,
@@ -16,11 +19,8 @@ export const EditModal = () => {
     resolver: yupResolver(schemaCreateDonation),
   });
 
-  const { updateDonation, setIsClothes } = useContext(DashboardContext);
-  const { setEspecialModalIsOpen } = useContext(ModalsContext);
-
   const submitForm: SubmitHandler<IRegisterDonation> = (formData) => {
-    updateDonation(formData);
+    registerDonation(formData);
   };
 
   return (
@@ -28,7 +28,7 @@ export const EditModal = () => {
       <div>
         <header>
           <button onClick={() => setEspecialModalIsOpen("")}>X</button>
-          <h2>Editar doação</h2>
+          <h2>Criar doação</h2>
         </header>
 
         <form onSubmit={handleSubmit(submitForm)}>
@@ -46,7 +46,7 @@ export const EditModal = () => {
             <button onClick={() => setIsClothes(false)}>Alimento</button>
           </div>
 
-          <button type="submit">Editar</button>
+          <button type="submit">Enviar</button>
         </form>
       </div>
     </dialog>

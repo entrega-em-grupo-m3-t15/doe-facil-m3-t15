@@ -5,7 +5,6 @@ import logo from "../../../img/logo.svg";
 import ListDonationDonee from "./ListDonationDonee";
 
 export const UserDoneePage = () => {
-  
   return (
     <StyleUserPage>
       <StyleHeaderUserPage>
@@ -29,11 +28,11 @@ export const UserDoneePage = () => {
             <div className="box_info">
               <UserInfo />
             </div>
-           <section>
+            <section>
               <div className="box_cards">
-                <ListDonationDonee/>
+                <ListDonationDonee />
               </div>
-           </section>
+            </section>
           </div>
         </main>
       </div>

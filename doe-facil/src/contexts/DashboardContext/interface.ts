@@ -7,6 +7,8 @@ export interface IRegisterDonation {
   id: number;
   userId: number;
   image: string;
+  isAvailable: boolean;
+  isClothes: boolean;
 }
 
 export interface IUpdateDonation {
@@ -35,13 +37,14 @@ export interface ICardDonation {
 export interface IDashboardContext {
   donations: IGetDonations[];
   setDonations: React.Dispatch<React.SetStateAction<IGetDonations[]>>;
+  isClothes: boolean;
+  setIsClothes: React.Dispatch<React.SetStateAction<boolean>>;
   registerDonation: (data: IRegisterDonation) => void;
   addDonationToUser: (productId: IAddProductToUser) => void;
   updateDonation: (data: IUpdateDonation) => void;
   deleteDonation: () => void;
   getDonationsUser: () => Promise<void>;
   donationsUser: IGetDonations[];
-  deleteDonation: () => void;
 }
 
 export interface IChildrenProps {
