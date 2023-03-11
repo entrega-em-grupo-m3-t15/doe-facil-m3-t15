@@ -39,6 +39,9 @@ export interface IDashboardContext {
   addDonationToUser: (productId: IAddProductToUser) => void;
   updateDonation: (data: IUpdateDonation) => void;
   deleteDonation: () => void;
+  getDonationsUser: () => Promise<void>;
+  donationsUser: IGetDonations[];
+  deleteDonation: () => void;
 }
 
 export interface IChildrenProps {
