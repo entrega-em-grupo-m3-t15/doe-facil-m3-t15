@@ -34,16 +34,16 @@ export const Router = () => {
           <Route path="*" element={<NotFoundPage />} />
       </Route>
       
-      <Route path="/userPage" element={<PrivateRoutes/>}>
+      {/* <Route path="/mainPage" element={<PrivateRoutes/>}> */}
 
         <Route path="/userPage" element={<MainPage />} />
         <Route path="/userPage/donee/:id" element={<UserDoneePage />} />
 
-        <Route path="/userPage/donor" element={<DonorRoutes/>}>
+        {/* <Route path="/userPage/donor" element={<DonorRoutes/>}> */}
           <Route path="/userPage/donor/:id" element={<UserDonorPage />} />
-        </Route>
+        {/* </Route> */}
 
-      </Route>
+      {/* </Route> */}
 
     </Routes>
   );

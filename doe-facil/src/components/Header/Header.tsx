@@ -8,6 +8,8 @@ import { StyleHeader } from "./style";
 export const Header = () => {
   const { isOpenModal, setIsOpenModal } = useContext(ModalsContext);
 
+  const navigate = useNavigate()
+
   return (
     <StyleHeader>
       <div className="container">
@@ -17,7 +19,7 @@ export const Header = () => {
 
         <div>
           <nav>
-            <Link to="saiba-mais">Quem somos</Link>
+            <button className="aboutUsBtn" onClick={() => navigate("/saiba-mais")}>Quem somos</button>
             <button onClick={() => setIsOpenModal(true)}>Cadastro</button>
             <Link to="/login">Entrar</Link>
           </nav>

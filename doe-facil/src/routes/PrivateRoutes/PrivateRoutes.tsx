@@ -5,13 +5,15 @@ import { UserRequestsContext } from "../../contexts/user/UserRequestsContext.tsx
 export const PrivateRoutes = () => {
   const { user } = useContext(UserRequestsContext);
 
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
+
+  console.log(user)
 
   useEffect(() => {
     if(!user){
-      console.log("obaa")
+      navigate("/")
     }
   }, [])
 
-  return <>{user ? <Outlet/> : null}</>
+  return <>{user?.user ? <Outlet/> : navigate("/login")}</>
 }
