@@ -10,9 +10,6 @@ export const DonorCard = () => {
   const { especialModalIsOpen, setEspecialModalIsOpen } =
     useContext(ModalsContext);
 
-  especialModalIsOpen == "editModal" && <EditModal />;
-  especialModalIsOpen == "deleteModal" && <DeleteModal />;
-
   return (
     <div>
       <header>
@@ -40,6 +37,8 @@ export const DonorCard = () => {
           </div>
         </div>
       </main>
+      {especialModalIsOpen == "editModal" && <EditModal />}
+      {especialModalIsOpen == "deleteModal" && <DeleteModal />}
     </div>
   );
 };

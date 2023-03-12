@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ReactNode } from "react";
 import { iAxiosError } from "../user/userInterfaces";
 
 export interface IUserProps {
@@ -8,13 +8,14 @@ export interface IUserProps {
   userIncome?: string;
 }
 
-export interface iUpdateUser{
+export interface iUpdateUser {
   name: string;
-  description: string;
-  amount: number;
+  adress: string;
+  contact: string;
+  userInCome: string;
 }
 
-export interface IUserContextProps{
+export interface IUserContextProps {
   deleteUser: () => Promise<iAxiosError | void>;
   updateUser: (data: iUpdateUser) => Promise<iAxiosError | void>;
 }
