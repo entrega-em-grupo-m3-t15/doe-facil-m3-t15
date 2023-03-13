@@ -23,7 +23,7 @@ export const MainPageCard = ({ donation }: ICardDonation) => {
   return (
     <StyleCards
       onClick={() =>
-        !user?.user.isDonor && setEspecialModalIsOpen("collectModal")
+        !user?.user?.isDonor && setEspecialModalIsOpen("collectModal")
       }
     >
       <div className="card_title">
@@ -43,10 +43,12 @@ export const MainPageCard = ({ donation }: ICardDonation) => {
             <p>{donation.amount}</p>
           </div>
         </div>
-        <button onClick={() => setIsOpenModal(true)}>Detalhes</button>
+        <button onClick={() => {
+          setIsOpenModal(true)
+        }
+          }>Detalhes</button>
       </main>
-      {isOpenModal && <DetailsModal />}
-      {especialModalIsOpen == "collectModal" && (
+       {especialModalIsOpen == "collectModal" && (
         <CollectModal cardId={donation.id} />
       )}
     </StyleCards>

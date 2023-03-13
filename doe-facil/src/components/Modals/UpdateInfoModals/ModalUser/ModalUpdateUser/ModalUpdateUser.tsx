@@ -1,11 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+<<<<<<< HEAD:doe-facil/src/components/Modals/UpdateInfoModals/ModalUser/ModalUpdateUser.tsx
 import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
-import { iUpdateUser } from "../../../../contexts/UserInfoContext/inteface";
-import { UserContext } from "../../../../contexts/UserInfoContext/UserInfoContext";
+import { iUpdateUser } from "../../../../contexts/user/UserInfoContext/inteface";
+import { UserContext } from "../../../../contexts/user/UserInfoContext/UserInfoContext";
 import { schemaEditUserInfo } from "../../../../validators/UserLogged/schemaEditUserInfo";
 import { Input } from "../../../Form/Input/Input";
+=======>>>>>>> d03fe2a11c61422c230641ba1906be593beb941d:doe-facil/src/components/Modals/UpdateInfoModals/ModalUser/ModalUpdateUser/ModalUpdateUser.tsx
 
 export const ModalUpdateUser = () => {
   const { setEspecialModalIsOpen } = useContext(ModalsContext);
@@ -25,7 +27,7 @@ export const ModalUpdateUser = () => {
   };
 
   return (
-    <dialog>
+    <StyledDialog>
       <div>
         <header>
           <button onClick={() => setEspecialModalIsOpen("")}>X</button>
@@ -65,6 +67,6 @@ export const ModalUpdateUser = () => {
           <button type="submit">Salvar</button>
         </main>
       </div>
-    </dialog>
+    </StyledDialog>
   );
 };

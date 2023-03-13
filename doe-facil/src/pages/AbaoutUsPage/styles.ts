@@ -5,21 +5,21 @@ export const StyledAboutUs = styled.div`
     padding-bottom: 20px;
   }
 
-
   @media(max-width: 425px){
     nav{
     width: 100px;
   }
   }
   
-
-  h2{
-    font-weight:800;
-    font-size: 2.25rem;
-    color:var(--Color-primary);
-    margin-bottom: 1.875rem;
-    margin-top: 2.563rem;
-    text-align: center;
+  .infoContainer{
+    h2{
+      font-weight:800;
+      font-size: 2.25rem;
+      color:var(--Color-primary);
+      margin-bottom: 1.875rem;
+      margin-top: 2.563rem;
+      text-align: center;
+    }
   }
 
   main{

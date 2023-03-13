@@ -3,8 +3,14 @@ import { StyleUserPage, StyleHeaderUserPage } from "../UserDonorPage/style";
 import { UserInfo } from "../UserInfo/UserInfo";
 import logo from "../../../img/logo.svg";
 import ListDonationDonee from "./ListDonationDonee";
+import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser/ModalUpdateUser";
+import { useContext } from "react";
+import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
 
 export const UserDoneePage = () => {
+
+  const { especialModalIsOpen } = useContext(ModalsContext)
+
   return (
     <StyleUserPage>
       <StyleHeaderUserPage>
@@ -15,7 +21,7 @@ export const UserDoneePage = () => {
             </div>
             <div>
               <nav>
-                <Link to="/userPage">Voltar</Link>
+                <Link to="/mainPage">Voltar</Link>
               </nav>
             </div>
           </div>
@@ -36,6 +42,8 @@ export const UserDoneePage = () => {
           </div>
         </main>
       </div>
+
+      {especialModalIsOpen === "editUser" && <ModalUpdateUser/>}
     </StyleUserPage>
   );
 };

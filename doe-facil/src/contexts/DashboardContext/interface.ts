@@ -1,5 +1,11 @@
 import { ReactNode } from "react";
 
+export interface IFormRegisterDonation {
+  name: string;
+  description: string;
+  isClothes: boolean;
+}
+
 export interface IRegisterDonation {
   name: string;
   description: string;
@@ -40,11 +46,13 @@ export interface IDashboardContext {
   setDonations: React.Dispatch<React.SetStateAction<IGetDonations[]>>;
   isClothes: boolean;
   setIsClothes: React.Dispatch<React.SetStateAction<boolean>>;
-  registerDonation: (data: IRegisterDonation) => void;
+  donationsUser: IGetDonations[];
+  registerDonation: (data: IFormRegisterDonation) => void;
   addDonationToUser: (productId: IAddProductToUser) => void;
   updateDonation: (data: IUpdateDonation) => void;
   setDonationsUser: React.Dispatch<React.SetStateAction<IGetDonations[]>>;
-  donationsUser: IGetDonations[];
+  getDonationsUser: () => Promise<void>;
+  deleteDonation: () => Promise<void>;
 }
 
 export interface IChildrenProps {

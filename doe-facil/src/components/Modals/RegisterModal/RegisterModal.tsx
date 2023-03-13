@@ -1,14 +1,13 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
-import { StyledModal } from "./style";
+import { StyledDialog } from "./style";
 
 export const RegisterModal = () => {
-  const { isOpenModal, setIsOpenModal } = useContext(ModalsContext);
+  const { setIsOpenModal } = useContext(ModalsContext);
   return (
-
-    <StyledModal>
-      <dialog className="dialogModal" open={isOpenModal}>
+    <StyledDialog>
+      <section>
         <div className="closeBtn">
           <button onClick={() => setIsOpenModal(false)}>X</button>
         </div>
@@ -25,13 +24,13 @@ export const RegisterModal = () => {
 
               <div>
                 <Link to={"/registro/doador"}>Doador</Link>
-                <small>quem deseja ajudar com doações</small>
+                <small>Quem deseja ajudar com doações</small>
               </div>
             </div>
           </main>
         </div>
-      </dialog>
-    </StyledModal>
+      </section>
+    </StyledDialog>
     
   );
 };

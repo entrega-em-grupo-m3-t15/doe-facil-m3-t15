@@ -3,7 +3,7 @@ import { UserDoneePage } from "../../components/UserPages/UserDoneePage/UserDone
 import { UserDonorPage } from "../../components/UserPages/UserDonorPage/UserDonorPage";
 import { UserRequestsContext } from "../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
 
-export const UserPage = () => {
+export const userPage = () => {
   const { user } = useContext(UserRequestsContext);
 
   if (user?.user?.isDonor) {

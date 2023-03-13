@@ -8,6 +8,8 @@ import {
   iAxiosError,
   iDoneeRegister,
   iDonorRegister,
+  iUserData,
+  iUserDataExample,
   iUserLogin,
   iUserLoginResponse,
 } from "../userInterfaces";
@@ -20,11 +22,15 @@ export interface iUserRequestsrProps {
 export const UserRequestsContext = createContext({} as iUserRequestsContext);
 
 export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
-  const [user, setUser] = useState<iUserLoginResponse | null>(null);
+  const [user, setUser] = useState<iUserDataExample | null>(null);
   const [loading, setLoading] = useState(false);
 
-  let userID = localStorage.getItem("@USERID");
-  let userToken = localStorage.getItem("@USERTOKEN");
+  const [userID, setUserID] = useState<string | null>(
+    localStorage.getItem("@USERID")
+  );
+  const [userToken, setUserToken] = useState<string | null>(
+    localStorage.getItem("@USERTOKEN")
+  );
 
   const navigate = useNavigate();
 
@@ -35,6 +41,7 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
     const { confirm_password, ...dataRegister } = data;
     const baseURL = isDonor ? "/register" : "/users";
     try {
+      setLoading(true);
       await API.post(baseURL, {
         ...dataRegister,
         isDonor: isDonor,
@@ -50,26 +57,28 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
       }
       console.error(error);
       toast.error("Não foi possível realizar o cadastro");
+    } finally {
+      setLoading(false);
     }
   };
 
   const loginUserRequest = async (data: iUserLogin) => {
     try {
+      setLoading(true);
       const response = await API.post("/login", data);
 
-      userID = response.data.user.id;
-      userToken = response.data.accessToken;
+      setUserID(response.data.user.id);
+      setUserToken(response.data.accessToken);
+      localStorage.setItem("@USERTOKEN", response.data.accessToken);
+      localStorage.setItem("@USERID", response.data.user.id);
 
-      localStorage.setItem("@USERTOKEN", userToken!);
-      localStorage.setItem("@USERID", userID!);
-
-      API.defaults.headers.common.Authorization = `Bearer ${userToken}`;
+      API.defaults.headers.common.Authorization = `Bearer ${response.data.acessToken}`;
 
       toast.success("Login realizado com sucesso!");
 
       setUser(response.data);
 
-      navigate(`/userPage`);
+      navigate(`/mainPage`);
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -77,6 +86,8 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
       }
       console.error(error);
       toast.error("Não foi possivel realizar o login");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -85,17 +96,22 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
     if (token) {
       try {
-        API.defaults.headers.common.Authorization = `Bearer ${userToken}`;
+        setLoading(true);
+        API.defaults.headers.common.Authorization = `Bearer ${token}`;
 
         const response = await API.get(`/users/${userId}`);
 
         setUser(response.data);
+
+        navigate("/mainPage");
       } catch (error) {
         if (axios.isAxiosError<iAxiosError>(error)) {
           const errorMessage = error.response?.data?.message;
           toast.error(errorMessage);
         }
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     }
     setLoading(false);
@@ -103,7 +119,7 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
   useEffect(() => {
     autoLogin(userID);
-  }, []);
+  }, [userID]);
 
   return (
     <UserRequestsContext.Provider
@@ -114,6 +130,7 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
         setLoading,
         createUserRequest,
         loginUserRequest,
+        autoLogin,
       }}
     >
       {children}
