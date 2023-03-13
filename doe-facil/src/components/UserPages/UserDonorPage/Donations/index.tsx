@@ -9,8 +9,8 @@ const Donations = () => {
   return (
     <>
         {
-            donationsUser.map((donation)=>{
-                return <DonorCard/>
+            donationsUser.map((donation) => {
+                return <DonorCard donation={donation} key={donation.id}/>
             })
         }
     </>

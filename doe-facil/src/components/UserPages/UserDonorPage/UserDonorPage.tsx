@@ -31,12 +31,13 @@ export const UserDonorPage = () => {
           </div>
         </div>
       </StyleHeaderUserPage>
-
+      
       <div className="container">
         <main>
           <div className="box_profile-main">
             <div className="box_info">
               <UserInfo />
+              { especialModalIsOpen == "creatDonation" && <CreateDonationModal/> }
             </div>
            <section>
               <span className="button_creat_donation">

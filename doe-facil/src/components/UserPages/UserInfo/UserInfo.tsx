@@ -10,23 +10,26 @@ export const UserInfo = () => {
   const { setEspecialModalIsOpen } = useContext(ModalsContext);
 
   return (
-    <StyleProfileUser>
-      <div className="box_profile">
-        <header>
-          <h2>Perfil</h2>
-          <button onClick={() => setEspecialModalIsOpen("editUser")}>
-            Editar perfil
-          </button>
-        </header>
+      <StyleProfileUser>
+        <div className="box_profile">
+          <header>
+            <h2>Perfil</h2>
+            <button onClick={() => setEspecialModalIsOpen("editUser")}>
+              Editar perfil
+            </button>
+          </header>
 
-        <span className="icon">
-          <div className="box_icon">
-            <BiUserCircle />
-          </div>
+          <span className="icon">
+            <div className="box_icon">
+              <BiUserCircle style={{
+                width: 200,
+                height: 200,
+              }}/>
+            </div>
 
-          <h2>{user?.user.name}</h2>
-        </span>
-      </div>
+            <h2>{user?.user.name}</h2>
+          </span>
+        </div>
 
       <div className="box_info">
         <h2>Informações</h2>
