@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { DashboardContext } from "../../../../../contexts/DashboardContext/DashboardContext";
 import { ModalsContext } from "../../../../../contexts/ModalsContext/ModalsContext";
+import { StyledDialog } from "./style";
 
 export const DetailsModal = () => {
   const { isOpenModal, setIsOpenModal } = useContext(ModalsContext);
   const { donations } = useContext(DashboardContext);
 
   return (
-    <dialog open={isOpenModal}>
+    <StyledDialog open={isOpenModal}>
       <div>
         <button onClick={() => setIsOpenModal(false)}>X</button>
         {donations.map((element) => {
@@ -23,6 +24,6 @@ export const DetailsModal = () => {
           );
         })}
       </div>
-    </dialog>
+    </StyledDialog>
   );
 };

@@ -1,11 +1,12 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
-import { iUpdateUser } from "../../../../contexts/UserInfoContext/inteface";
-import { UserContext } from "../../../../contexts/UserInfoContext/UserInfoContext";
-import { schemaEditUserInfo } from "../../../../validators/UserLogged/schemaEditUserInfo";
-import { Input } from "../../../Form/Input/Input";
+import { ModalsContext } from "../../../../../contexts/ModalsContext/ModalsContext";
+import { iUpdateUser } from "../../../../../contexts/UserInfoContext/inteface";
+import { UserContext } from "../../../../../contexts/UserInfoContext/UserInfoContext";
+import { schemaEditUserInfo } from "../../../../../validators/UserLogged/schemaEditUserInfo";
+import { Input } from "../../../../Form/Input/Input";
+import { StyledDialog } from "./style";
 
 export const ModalUpdateUser = () => {
   const { setEspecialModalIsOpen } = useContext(ModalsContext);
@@ -25,7 +26,7 @@ export const ModalUpdateUser = () => {
   };
 
   return (
-    <dialog>
+    <StyledDialog>
       <div>
         <header>
           <button onClick={() => setEspecialModalIsOpen("")}>X</button>
@@ -65,6 +66,6 @@ export const ModalUpdateUser = () => {
           <button type="submit">Salvar</button>
         </main>
       </div>
-    </dialog>
+    </StyledDialog>
   );
 };
