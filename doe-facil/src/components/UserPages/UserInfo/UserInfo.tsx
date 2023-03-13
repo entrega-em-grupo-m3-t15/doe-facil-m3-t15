@@ -23,13 +23,15 @@ export const UserInfo = () => {
 
           <span className="icon">
             <div className="box_icon">
-              <BiUserCircle style={{
-                width: 200,
-                height: 200,
-              }}/>
+              <BiUserCircle
+                style={{
+                  width: 200,
+                  height: 200,
+                }}
+              />
             </div>
 
-            <h2>{user?.user.name}</h2>
+            <h2>{user?.user?.name}</h2>
           </span>
         </div>
 

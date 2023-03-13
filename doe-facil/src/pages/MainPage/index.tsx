@@ -29,9 +29,9 @@ export const MainPage = () => {
 
         <Link
           to={
-            user?.user.isDonor
-              ? `/userPage/donor/${user?.user.id}`
-              : `/userPage/donee/${user?.user.id}`
+            user?.user?.isDonor
+              ? `/userPage/donor/${user?.user?.id}`
+              : `/userPage/donee/${user?.user?.id}`
           }
         >
           Perfil
@@ -45,8 +45,8 @@ export const MainPage = () => {
           </div>
 
           <div className="user_information">
-            <h2>{user?.user.email}</h2>
-            <p>{user?.user.contact}</p>
+            <h2>{user?.user?.email}</h2>
+            <p>{user?.user?.contact}</p>
           </div>
         </div>
       </StyledHeaderMain>

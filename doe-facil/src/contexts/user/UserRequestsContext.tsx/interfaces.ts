@@ -17,4 +17,5 @@ export interface iUserRequestsContext {
     isDonor: boolean
   ) => Promise<iAxiosError | void>;
   loginUserRequest: (data: iUserLogin) => Promise<iAxiosError | void>;
+  autoLogin: (userId: string | null) => Promise<void>;
 }

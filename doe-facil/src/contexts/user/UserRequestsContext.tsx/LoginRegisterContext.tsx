@@ -82,6 +82,7 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
   const autoLogin = async (userId: string | null) => {
     const token = localStorage.getItem("@USERTOKEN");
+    console.log(userId);
 
     if (token) {
       try {
@@ -89,7 +90,11 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
         const response = await API.get(`/users/${userId}`);
 
+        console.log(response);
+
         setUser(response.data);
+
+        navigate("/userPage");
       } catch (error) {
         if (axios.isAxiosError<iAxiosError>(error)) {
           const errorMessage = error.response?.data?.message;
@@ -114,6 +119,7 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
         setLoading,
         createUserRequest,
         loginUserRequest,
+        autoLogin,
       }}
     >
       {children}

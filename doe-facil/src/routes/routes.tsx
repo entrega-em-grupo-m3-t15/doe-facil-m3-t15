@@ -16,35 +16,35 @@ import { PrivateRoutes } from "./PrivateRoutes/PrivateRoutes";
 // import { ProtectedRoutes } from "./protectedRoutes";
 import { PublicRoutes } from "./PublicRoutes/PublicRoutes";
 import { MainPage } from "../pages/MainPage";
+import { DashboardProvider } from "../contexts/DashboardContext/DashboardContext";
+import { UserProvider } from "../contexts/UserInfoContext/UserInfoContext";
 
 export const Router = () => {
-  const { user } = useContext(UserRequestsContext);
-
   // console.log(user?.user.isDonor)
 
   return (
     <Routes>
-
-      <Route path="/" element={<PublicRoutes/>}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/saiba-mais" element={<AboutUsPage />} />
-          <Route path="/registro/donatario" element={<RegisterDoneePage />} />
-          <Route path="/registro/doador" element={<RegisterDonorPage />} />
-          <Route path="*" element={<NotFoundPage />} />
+      <Route path="/" element={<PublicRoutes />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/saiba-mais" element={<AboutUsPage />} />
+        <Route path="/registro/donatario" element={<RegisterDoneePage />} />
+        <Route path="/registro/doador" element={<RegisterDonorPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
-      
+
       {/* <Route path="/mainPage" element={<PrivateRoutes/>}> */}
 
+      <Route element={<PrivateRoutes />}>
         <Route path="/userPage" element={<MainPage />} />
         <Route path="/userPage/donee/:id" element={<UserDoneePage />} />
+        <Route path="/userPage/donor/:id" element={<UserDonorPage />} />
+      </Route>
 
-        {/* <Route path="/userPage/donor" element={<DonorRoutes/>}> */}
-          <Route path="/userPage/donor/:id" element={<UserDonorPage />} />
-        {/* </Route> */}
-
+      {/* <Route path="/userPage/donor" element={<DonorRoutes/>}> */}
       {/* </Route> */}
 
+      {/* </Route> */}
     </Routes>
   );
 };
