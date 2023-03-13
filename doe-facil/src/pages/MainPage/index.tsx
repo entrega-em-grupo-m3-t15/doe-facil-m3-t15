@@ -4,6 +4,7 @@ import { UserRequestsContext } from "../../contexts/user/UserRequestsContext.tsx
 import { BiUserCircle } from "react-icons/bi";
 import { DashboardContext } from "../../contexts/DashboardContext/DashboardContext";
 import { MainPageCard } from "../../components/Cards/MainPageCards/DoneeCard";
+import logo from "../../img/logo.svg";
 import {
   StyledCardListMain,
   StyledContainerMobile,
@@ -13,6 +14,7 @@ import {
 export const MainPage = () => {
   const { user } = useContext(UserRequestsContext);
   const { donations } = useContext(DashboardContext);
+  const userId = localStorage.getItem("@USERID");
 
   const navigate = useNavigate();
 
@@ -25,31 +27,44 @@ export const MainPage = () => {
   return (
     <StyledContainerMobile>
       <StyledHeaderMain>
-        <button onClick={() => logoutUser}>Sair</button>
+        <div className="box_header">
+          <button onClick={() => logoutUser}>Sair</button>
 
-        <Link
-          to={
-            user?.user.isDonor
-              ? `/userPage/donor/${user?.user.id}`
-              : `/userPage/donee/${user?.user.id}`
-          }
-        >
-          Perfil
-        </Link>
+          <div className="box_logo">
+            <img src={logo} alt="" />
+          </div>
+
+          <Link
+            to={
+              user?.user.isDonor
+                ? `/userPage/donor/${user?.user.id}`
+                : `/userPage/donee/${user?.user.id}`
+            }
+          >
+            Perfil
+          </Link>
+        </div>
       </StyledHeaderMain>
 
-      <StyledHeaderMain>
-        <div>
-          <div onClick={() => navigate("userPage/:id")}>
-            <BiUserCircle />
+      <section>
+        <div className="box_profile">
+          <div className="box_icon"
+            onClick={() =>
+              navigate(
+                user?.user.isDonor
+                  ? `/userPage/donor/${user?.user.id}`
+                  : `/userPage/donee/${user?.user.id}`
+              )
+            }
+          >
+            <BiUserCircle style={{ width: 100, height: 80 }} />
           </div>
 
           <div className="user_information">
-            <h2>{user?.user.email}</h2>
-            <p>{user?.user.contact}</p>
+            <h2>{user?.user.name}</h2>
           </div>
         </div>
-      </StyledHeaderMain>
+      </section>
 
       <main>
         <h2>Doações</h2>

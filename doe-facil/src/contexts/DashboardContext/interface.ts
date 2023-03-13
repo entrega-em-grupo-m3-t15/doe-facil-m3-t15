@@ -18,6 +18,7 @@ export interface IUpdateDonation {
 }
 
 export interface IGetDonations {
+  isClothes: boolean;
   name: string;
   description: string;
   amount: number;

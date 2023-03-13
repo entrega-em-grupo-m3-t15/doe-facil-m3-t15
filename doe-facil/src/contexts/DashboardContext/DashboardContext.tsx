@@ -23,7 +23,6 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
   const userToken = localStorage.getItem("@USERTOKEN");
   const donationId = localStorage.getItem("@DONATIONID");
   const userId = localStorage.getItem("@USERID");
-  console.log(userId)
 
   const { user } = useContext(UserRequestsContext);
 
@@ -58,8 +57,7 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
             Authorization: `Bearer ${userToken}`,
           },
         });
-        setDonationsUser([...donationsUser , response.data.donations]);
-        console.log(response.data)
+        setDonationsUser(response.data.donations)
       } catch (error) {
         if (axios.isAxiosError<iAxiosError>(error)) {
           const errorMessage = error.response?.data?.message;

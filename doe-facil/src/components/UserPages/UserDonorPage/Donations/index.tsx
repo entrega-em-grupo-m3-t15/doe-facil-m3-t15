@@ -10,7 +10,6 @@ const Donations = () => {
     <>
         {
             donationsUser.map((donation) => {
-              console.log(donation)
                 return <DonorCard donation={donation} key={donation.id}/>
             })
         }
