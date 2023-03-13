@@ -17,6 +17,7 @@ export const MainPage = () => {
   const { isOpenModal } = useContext(ModalsContext)
   const { user } = useContext(UserRequestsContext);
   const { donations } = useContext(DashboardContext);
+  const userId = localStorage.getItem("@USERID");
 
   const navigate = useNavigate();
 
@@ -31,23 +32,37 @@ export const MainPage = () => {
   return (
     <StyledContainerMobile>
       <StyledHeaderMain>
-        <button onClick={() => logoutUser}>Sair</button>
+        <div className="box_header">
+          <button onClick={() => logoutUser}>Sair</button>
+
+          <div className="box_logo">
+            <img src={logo} alt="" />
+          </div>
 
         <Link
           to={
-            user?.user?.isDonor
-              ? `/mainPage/donor/${user && user.id}`
-              : `/mainPage/donee/${user && user.id}`
+            user?.user.isDonor
+              ? `/userPage/donor/${user?.user.id}`
+              : `/userPage/donee/${user?.user.id}`
           }
         >
           Perfil
         </Link>
+        </div>
       </StyledHeaderMain>
 
-      <StyledHeaderMain>
-        <div>
-          <div onClick={() => navigate("userPage/:id")}>
-            <BiUserCircle />
+      <section>
+        <div className="box_profile">
+          <div className="box_icon"
+            onClick={() =>
+              navigate(
+                user?.user.isDonor
+                  ? `/userPage/donor/${user?.user.id}`
+                  : `/userPage/donee/${user?.user.id}`
+              )
+            }
+          >
+            <BiUserCircle style={{ width: 100, height: 80 }} />
           </div>
 
           <div className="user_information">
@@ -55,7 +70,7 @@ export const MainPage = () => {
             <p>{user?.user?.contact}</p>
           </div>
         </div>
-      </StyledHeaderMain>
+      </section>
 
       <main>
         <h2>Doações</h2>

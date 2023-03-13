@@ -26,6 +26,12 @@ export const StyleUserPage = styled.div`
     padding: 1rem 0.5rem;
   }
 
+  .box_cards > ul {
+    margin-top: 1rem;
+    max-height: 400px;
+    overflow: auto;
+  }
+
   .box_cards > ul > .list_donation_empty {
     width: 100%;
     height: 150px;
@@ -114,6 +120,12 @@ export const StyleUserPage = styled.div`
 
     .box_cards > ul > .list_donation_empty {
       height: 350px;
+    }
+
+    .box_cards > ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 `;

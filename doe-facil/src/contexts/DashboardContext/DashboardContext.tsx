@@ -22,6 +22,7 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
   const [isClothes, setIsClothes] = useState(false);
 
   const donationId = localStorage.getItem("@DONATIONID");
+  const userId = localStorage.getItem("@USERID");
 
   const { user, setLoading } = useContext(UserRequestsContext);
 
@@ -56,25 +57,27 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
   }, [user]);
 
   const getDonationsUser = async () => {
-    try {
-      setLoading(true);
-      const userToken = localStorage.getItem("@USERTOKEN");
-      const userId = localStorage.getItem("USERID");
 
-      const response = await API.get(`/users/${userId}`, {
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-        },
-      });
-
-      setDonationsUser(response.data.donations);
-    } catch (error) {
-      if (axios.isAxiosError<iAxiosError>(error)) {
-        const errorMessage = error.response?.data?.message;
-        toast.error(errorMessage);
+    const userToken = localStorage.getItem("@USERTOKEN");
+    const userId = localStorage.getItem("USERID");
+   
+      try {
+        setLoading(true);
+        const response = await API.get(`/users/${userId}?_embed=donations`, {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        });
+        setDonationsUser(response.data.donations)
+      } catch (error) {
+        if (axios.isAxiosError<iAxiosError>(error)) {
+          const errorMessage = error.response?.data?.message;
+          toast.error(errorMessage);
+        }
+  
+        console.error(error);
       }
-      console.error(error);
-    } finally {
+      finally {
       setLoading(false);
     }
   };
@@ -202,7 +205,7 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
         addDonationToUser,
         updateDonation,
         deleteDonation,
-        getDonationsUser,
+        setDonationsUser,
         donationsUser,
       }}
     >

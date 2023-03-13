@@ -24,6 +24,7 @@ export interface IUpdateDonation {
 }
 
 export interface IGetDonations {
+  isClothes: boolean;
   name: string;
   description: string;
   amount: number;
@@ -49,6 +50,7 @@ export interface IDashboardContext {
   registerDonation: (data: IFormRegisterDonation) => void;
   addDonationToUser: (productId: IAddProductToUser) => void;
   updateDonation: (data: IUpdateDonation) => void;
+  setDonationsUser: React.Dispatch<React.SetStateAction<IGetDonations[]>>;
   getDonationsUser: () => Promise<void>;
   deleteDonation: () => Promise<void>;
 }

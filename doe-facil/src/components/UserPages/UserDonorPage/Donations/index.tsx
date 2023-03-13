@@ -3,7 +3,8 @@ import { DashboardContext } from "../../../../contexts/DashboardContext/Dashboar
 import { DonorCard } from "../../../Cards/UserPageCards/DonorCard";
 
 const Donations = () => {
-  const { getDonationsUser, donationsUser } = useContext(DashboardContext);
+
+  const { donationsUser } = useContext( DashboardContext )
 
   return (
     <>

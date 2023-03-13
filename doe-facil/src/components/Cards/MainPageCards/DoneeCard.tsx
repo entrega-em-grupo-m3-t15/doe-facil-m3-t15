@@ -4,6 +4,9 @@ import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
 import { UserRequestsContext } from "../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
 import { CollectModal } from "../../Modals/MainPageModal/CollectModal";
 import { DetailsModal } from "../../Modals/UpdateInfoModals/ModalDonation/DetailsDonationModal/DetailsModal";
+import { StyleCards } from "./style";
+import imageFood  from "../../../img/profileImage/imagefood.png"
+import imageClothes from "../../../img/profileImage/imageclothes.svg";
 
 export const MainPageCard = ({ donation }: ICardDonation) => {
   //Fazer a requisição que mostra as informações dos cards aqui (/users/id) está como user Data no insominia
@@ -18,20 +21,23 @@ export const MainPageCard = ({ donation }: ICardDonation) => {
   const { user } = useContext(UserRequestsContext);
 
   return (
-    <li
+    <StyleCards
       onClick={() =>
         !user?.user?.isDonor && setEspecialModalIsOpen("collectModal")
       }
     >
       <div className="card_title">
-        <h2>Disponível para resgate</h2>
+        <h2>Disponível</h2>
       </div>
       <main>
         <div className="container_card">
-          <div className="left">
-            <img src="" alt="imagem da doação" />
+          <div className="box_image">
+            {
+              donation.isClothes ? (<img src={imageClothes} alt="imagem d adoação" />)
+              : (<img src={imageFood} alt="imagem d adoação" />) 
+            }
           </div>
-          <div className="right">
+          <div className="card_description">
             <h4>{donation.name}</h4>
             <p>{donation.description}</p>
             <p>{donation.amount}</p>
@@ -42,9 +48,9 @@ export const MainPageCard = ({ donation }: ICardDonation) => {
         }
           }>Detalhes</button>
       </main>
-      {/* {especialModalIsOpen == "collectModal" && (
+       {especialModalIsOpen == "collectModal" && (
         <CollectModal cardId={donation.id} />
-      )} */}
-    </li>
+      )}
+    </StyleCards>
   );
 };

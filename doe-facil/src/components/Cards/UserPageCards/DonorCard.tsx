@@ -3,6 +3,9 @@ import { ICardDonation } from "../../../contexts/DashboardContext/interface";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
 import { DeleteModal } from "../../Modals/UpdateInfoModals/ModalDonation/DeleteDonationModal/DeleteModal";
 import { EditModal } from "../../Modals/UpdateInfoModals/ModalDonation/EditDonationModal/EditModal";
+import imageFood from "../../../img/profileImage/imagefood.png";
+import imageClothes from "../../../img/profileImage/imageclothes.svg";
+import { StyleCardsDonor } from "./style";
 
 export const DonorCard = ({ donation }: ICardDonation) => {
   //Fazer a requisição que mostra as informações dos cards aqui (/users/id) está como user Data no insominia
@@ -10,24 +13,28 @@ export const DonorCard = ({ donation }: ICardDonation) => {
 
   const { especialModalIsOpen, setEspecialModalIsOpen } =
     useContext(ModalsContext);
+    console.log(donation.isClothes)
 
   return (
-    <li>
-      <header>
-        <h2>Disponível para resgate</h2>
-        <h2>lá resgatado</h2>
-      </header>
+    <StyleCardsDonor>
+      <div className="card_title">
+        <h2>Disponível</h2>
+      </div>
 
-      <main>
+      <section className="box_card">
         <div className="container_card">
-          <div className="left">
-            <img src="" alt="imagem da doação" />
+          <div className="box_image">
+            {donation.isClothes ? (
+              <img src={imageClothes} alt="imagem d adoação" />
+            ) : (
+              <img src={imageFood} alt="imagem d adoação" />
+            )}
           </div>
-          <div className="right">
-            <h4>{donation.name}</h4>
+          <div className="card_description">
+            <h2>{donation.name}</h2>
             <p>{donation.description}</p>
           </div>
-          <div>
+          <div className="box_btn">
             <button onClick={() => setEspecialModalIsOpen("editModal")}>
               Editar
             </button>
@@ -36,10 +43,9 @@ export const DonorCard = ({ donation }: ICardDonation) => {
             </button>
           </div>
         </div>
-      </main>
+      </section>
       {especialModalIsOpen == "editModal" && <EditModal />}
       {especialModalIsOpen == "deleteModal" && <DeleteModal />}
-
-    </li>
+    </StyleCardsDonor>
   );
 };
