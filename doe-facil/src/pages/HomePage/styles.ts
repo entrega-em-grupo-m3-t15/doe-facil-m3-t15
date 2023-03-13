@@ -4,7 +4,7 @@ export const StyledHomePage = styled.div`
 
   @media(max-width: 425px){
     nav{
-      width: 100px;
+      width: 6.25rem;
     }
   }
   
@@ -12,17 +12,17 @@ export const StyledHomePage = styled.div`
     width:100%;
   }
 
-  main{
-    padding-block: 20px ;
+  .mainContainer{
+    padding-block: 1.25rem ;
 
     h1{
       text-align: center;
 
-      font-size: 22px;
+      font-size: 1.375rem;
       color: var(--Color-primary);
       font-weight: 800;
 
-      margin-bottom: 30px;
+      margin-bottom: 1.875rem;
     }
 
     div{
@@ -30,7 +30,7 @@ export const StyledHomePage = styled.div`
       align-items: center;
       justify-content: center;
 
-      margin-inline: 22px;
+      margin-inline: 1.375rem;
 
       img{
         display: none;
@@ -39,18 +39,18 @@ export const StyledHomePage = styled.div`
       p{
         color: var(--Color-primary-50);
         font-weight: 600;
-        line-height: 22px;
-        font-size: 18px;
+        line-height: 1.375rem;
+        font-size: 1.125rem;
 
         max-width: 400px;
       }
 
       @media(min-width: 450px){
+        gap: 1.875rem;
 
-        gap: 30px;
         img{
-          width: 146px;
-          height: 180px;
+          width: 9.125rem;
+          height: 11.25rem;
           display: flex;
         }
       }
@@ -60,13 +60,13 @@ export const StyledHomePage = styled.div`
   footer{
     display: flex;
 
-    padding-block: 20px;
+    padding-block: 1.25rem;
     justify-content: space-between;
 
-    margin-inline: 20px;
+    margin-inline: 1.25rem;
 
     img{
-      width: 100px;
+      width: 6.25rem;
     }
 
     div{
@@ -76,7 +76,7 @@ export const StyledHomePage = styled.div`
       align-items: center;
 
       p{
-        font-size: 10px;
+        font-size: 0.625rem;
       }
 
       .phoneNumber{
@@ -85,10 +85,10 @@ export const StyledHomePage = styled.div`
 
       .line{
         background-color: var(--Color-primary);
-        width: 150px;
-        height: 1px;
+        width: 9.375rem;
+        height: 0.063rem;
 
-        margin-block:  12px;
+        margin-block: 0.75rem;
       }
     }
   }

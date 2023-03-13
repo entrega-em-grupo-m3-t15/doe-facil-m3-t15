@@ -2,15 +2,12 @@ import { useContext } from "react";
 import { BiUserCircle } from "react-icons/bi";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
 import { UserRequestsContext } from "../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
-import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser";
+import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser/ModalUpdateUser";
 import { StyleProfileUser } from "./style";
 
 export const UserInfo = () => {
   const { user } = useContext(UserRequestsContext);
-  const { especialModalIsOpen, setEspecialModalIsOpen } =
-    useContext(ModalsContext);
-
-  especialModalIsOpen == "editUser" && <ModalUpdateUser />;
+  const { setEspecialModalIsOpen } = useContext(ModalsContext);
 
   return (
     <StyleProfileUser>
@@ -45,6 +42,7 @@ export const UserInfo = () => {
           </li>
         </ul>
       </div>
+
     </StyleProfileUser>
   );
 };

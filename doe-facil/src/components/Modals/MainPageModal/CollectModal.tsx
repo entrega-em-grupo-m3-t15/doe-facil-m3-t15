@@ -12,7 +12,7 @@ export const CollectModal = ({ cardId }: IAddProductToUser) => {
         <header>
           <button onClick={() => setIsOpenModal(false)}>X</button>
           <h2>Resgatar doação?</h2>
-        </header>
+        </header> 
 
         <main>
           <div className="buttons_collectModal">
