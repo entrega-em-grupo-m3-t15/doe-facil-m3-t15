@@ -11,7 +11,7 @@ import { CreateDonationModal } from "../../Modals/UpdateInfoModals/ModalDonation
 
 export const UserDonorPage = () => {
 
-  const { getDonationsUser, donationsUser } = useContext( DashboardContext )
+  const { setDonationsUser, donationsUser } = useContext( DashboardContext )
   const { setEspecialModalIsOpen, especialModalIsOpen } = useContext(ModalsContext)
 
   return (

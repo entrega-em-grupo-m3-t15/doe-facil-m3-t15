@@ -4,7 +4,9 @@ import Donations from '../Donations'
 
 const ListDonation = () => {
 
-  const { getDonationsUser, donationsUser } = useContext( DashboardContext )
+  const { setDonationsUser, donationsUser } = useContext( DashboardContext )
+
+  console.log(donationsUser)
 
   return (
     <ul>

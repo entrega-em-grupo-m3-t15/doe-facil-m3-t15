@@ -4,12 +4,13 @@ import { DonorCard } from '../../../Cards/UserPageCards/DonorCard'
 
 const Donations = () => {
 
-  const { getDonationsUser, donationsUser } = useContext( DashboardContext )
+  const { setDonationsUser, donationsUser } = useContext( DashboardContext )
 
   return (
     <>
         {
             donationsUser.map((donation) => {
+              console.log(donation)
                 return <DonorCard donation={donation} key={donation.id}/>
             })
         }

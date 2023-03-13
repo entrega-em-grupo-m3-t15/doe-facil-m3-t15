@@ -42,7 +42,7 @@ export interface IDashboardContext {
   registerDonation: (data: IRegisterDonation) => void;
   addDonationToUser: (productId: IAddProductToUser) => void;
   updateDonation: (data: IUpdateDonation) => void;
-  getDonationsUser: () => Promise<void>;
+  setDonationsUser: React.Dispatch<React.SetStateAction<IGetDonations[]>>;
   donationsUser: IGetDonations[];
 }
 
