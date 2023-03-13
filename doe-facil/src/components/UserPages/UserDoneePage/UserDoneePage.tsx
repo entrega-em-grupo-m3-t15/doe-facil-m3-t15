@@ -21,7 +21,7 @@ export const UserDoneePage = () => {
             </div>
             <div>
               <nav>
-                <Link to="/userPage">Voltar</Link>
+                <Link to="/mainPage">Voltar</Link>
               </nav>
             </div>
           </div>

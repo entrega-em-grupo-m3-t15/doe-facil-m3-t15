@@ -20,7 +20,7 @@ export const MainPageCard = ({ donation }: ICardDonation) => {
   return (
     <li
       onClick={() =>
-        !user?.user.isDonor && setEspecialModalIsOpen("collectModal")
+        !user?.user?.isDonor && setEspecialModalIsOpen("collectModal")
       }
     >
       <div className="card_title">

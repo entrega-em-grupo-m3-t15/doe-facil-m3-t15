@@ -3,12 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserRequestsContext } from "../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
 import { BiUserCircle } from "react-icons/bi";
 import { DashboardContext } from "../../contexts/DashboardContext/DashboardContext";
-import { MainPageCard } from "../../components/Cards/MainPageCards/DoneeCard";
+
 import {
   StyledCardListMain,
   StyledContainerMobile,
   StyledHeaderMain,
 } from "./style";
+import { MainPageCard } from "../../components/Cards/MainPageCards/DoneeCard";
 import { DetailsModal } from "../../components/Modals/UpdateInfoModals/ModalDonation/DetailsDonationModal/DetailsModal";
 import { ModalsContext } from "../../contexts/ModalsContext/ModalsContext";
 
@@ -25,6 +26,8 @@ export const MainPage = () => {
     navigate("/");
   };
 
+  console.log(user);
+
   return (
     <StyledContainerMobile>
       <StyledHeaderMain>
@@ -32,9 +35,9 @@ export const MainPage = () => {
 
         <Link
           to={
-            user?.user.isDonor
-              ? `/userPage/donor/${user?.user.id}`
-              : `/userPage/donee/${user?.user.id}`
+            user?.user?.isDonor
+              ? `/mainPage/donor/${user && user.id}`
+              : `/mainPage/donee/${user && user.id}`
           }
         >
           Perfil
@@ -48,8 +51,8 @@ export const MainPage = () => {
           </div>
 
           <div className="user_information">
-            <h2>{user?.user.email}</h2>
-            <p>{user?.user.contact}</p>
+            <h2>{user?.user?.email}</h2>
+            <p>{user?.user?.contact}</p>
           </div>
         </div>
       </StyledHeaderMain>

@@ -1,10 +1,10 @@
 import { createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { iAxiosError } from "../user/userInterfaces";
+import { iAxiosError } from "../userInterfaces";
 import { IUserContextProps, IChildrenProps, iUpdateUser } from "./inteface";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { API } from "../../Services/api";
+import { API } from "../../../Services/api";
 
 export const UserContext = createContext({} as IUserContextProps);
 

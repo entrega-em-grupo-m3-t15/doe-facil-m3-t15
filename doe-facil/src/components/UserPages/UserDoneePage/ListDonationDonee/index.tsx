@@ -8,7 +8,7 @@ const ListDonationDonee = () => {
   return (
     <ul>
       {donationsUser.length > 0 ? (
-        <DonorCard />
+        donationsUser.map((donation) => <DonorCard donation={donation} />)
       ) : (
         <div className="list_donation_empty">
           <h2>Você ainda não resgatou doações</h2>

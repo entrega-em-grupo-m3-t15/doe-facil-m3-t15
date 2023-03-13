@@ -32,6 +32,20 @@ export interface iUserLoginResponse {
   user: iUserData;
 }
 
+export interface iUserDataExample {
+  id?: string;
+  name?: string;
+  email?: string;
+  contact?: string;
+  adress?: string;
+  userInCome?: string;
+  isDonor?: boolean;
+  password?: string;
+  donations?: IGetDonations[];
+  acessToken?: string;
+  user?: iUserData;
+}
+
 export interface iUserLogin {
   email: string;
   password: string;
