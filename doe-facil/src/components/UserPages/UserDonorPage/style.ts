@@ -75,7 +75,7 @@ export const StyleUserPage = styled.div`
         .box_profile-main{
             display: flex;
             width: 100%;
-            min-height: 710px;
+            min-height: 630px;
             gap: 1rem;
         }
 

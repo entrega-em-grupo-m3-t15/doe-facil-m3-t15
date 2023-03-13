@@ -23,14 +23,15 @@ export const UserInfo = () => {
 
           <span className="icon">
             <div className="box_icon">
-              <BiUserCircle />
+              <BiUserCircle style={{
+                width: 200,
+                height: 200,
+              }}/>
             </div>
 
             <h2>{user?.user.name}</h2>
           </span>
         </div>
-
-        {especialModalIsOpen == "editUser" && <ModalUpdateUser />}
 
         <div className="box_info">
           <h2>Informações</h2>
@@ -46,6 +47,7 @@ export const UserInfo = () => {
             </li>
           </ul>
         </div>
+        {especialModalIsOpen == "editUser" && <ModalUpdateUser />}
       </StyleProfileUser>
     </>
   );
