@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ModalsContext } from "../../../../contexts/ModalsContext/ModalsContext";
-import { UserContext } from "../../../../contexts/user/UserInfoContext/UserInfoContext";
+import { ModalsContext } from "../../../../../contexts/ModalsContext/ModalsContext";
+import { UserContext } from "../../../../../contexts/user/UserInfoContext/UserInfoContext";
 
 export const ModalDeleteUser = () => {
   const { setEspecialModalIsOpen } = useContext(ModalsContext);

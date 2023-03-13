@@ -10,8 +10,11 @@ import {
   StyledHeaderMain,
 } from "./style";
 import { MainPageCard } from "../../components/Cards/MainPageCards/DoneeCard";
+import { DetailsModal } from "../../components/Modals/UpdateInfoModals/ModalDonation/DetailsDonationModal/DetailsModal";
+import { ModalsContext } from "../../contexts/ModalsContext/ModalsContext";
 
 export const MainPage = () => {
+  const { isOpenModal } = useContext(ModalsContext)
   const { user } = useContext(UserRequestsContext);
   const { donations } = useContext(DashboardContext);
 
@@ -63,6 +66,7 @@ export const MainPage = () => {
           })}
         </StyledCardListMain>
       </main>
+      {isOpenModal && <DetailsModal />}
     </StyledContainerMobile>
   );
 };

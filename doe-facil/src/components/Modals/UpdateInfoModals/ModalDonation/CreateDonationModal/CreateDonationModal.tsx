@@ -6,6 +6,7 @@ import { IFormRegisterDonation } from "../../../../../contexts/DashboardContext/
 import { ModalsContext } from "../../../../../contexts/ModalsContext/ModalsContext";
 import { schemaCreateDonation } from "../../../../../validators/UserLogged/schemaCreateDonation";
 import { Input } from "../../../../Form/Input/Input";
+import { StyledDialog } from "./styles";
 
 export const CreateDonationModal = () => {
   const { setEspecialModalIsOpen } = useContext(ModalsContext);
@@ -24,7 +25,7 @@ export const CreateDonationModal = () => {
   };
 
   return (
-    <dialog>
+    <StyledDialog>
       <div>
         <header>
           <button onClick={() => setEspecialModalIsOpen("")}>X</button>
@@ -40,6 +41,7 @@ export const CreateDonationModal = () => {
           />
 
           <textarea cols={30} rows={10} {...register("description")}></textarea>
+
           <h2>Esta doação é</h2>
           <select {...register("isClothes")}>
             <option value="roupas">Roupas</option>
@@ -48,6 +50,6 @@ export const CreateDonationModal = () => {
           <button type="submit">Enviar</button>
         </form>
       </div>
-    </dialog>
+    </StyledDialog>
   );
 };

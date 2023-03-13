@@ -3,13 +3,12 @@ import { UserInfo } from "../UserInfo/UserInfo";
 import logo from "../../../img/logo.svg";
 import { StyleHeaderUserPage, StyleUserPage } from "./style";
 import { useContext } from "react";
-import { DashboardContext } from "../../../contexts/DashboardContext/DashboardContext";
 import ListDonation from "./ListDonation";
-import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
 import { CreateDonationModal } from "../../Modals/UpdateInfoModals/ModalDonation/CreateDonationModal/CreateDonationModal";
+import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
+import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser/ModalUpdateUser";
 
 export const UserDonorPage = () => {
-  const { getDonationsUser, donationsUser } = useContext(DashboardContext);
   const { setEspecialModalIsOpen, especialModalIsOpen } =
     useContext(ModalsContext);
 
@@ -41,7 +40,7 @@ export const UserDonorPage = () => {
             </div>
             <section>
               <span className="button_creat_donation">
-                <button onClick={() => setEspecialModalIsOpen("creatDonation")}>
+                <button onClick={() => setEspecialModalIsOpen("createDonation")}>
                   Fazer doação
                 </button>
               </span>
@@ -52,6 +51,9 @@ export const UserDonorPage = () => {
           </div>
         </main>
       </div>
+
+      {especialModalIsOpen == "createDonation" && <CreateDonationModal />}
+      {especialModalIsOpen == "editUser" && <ModalUpdateUser />}
     </StyleUserPage>
   );
 };

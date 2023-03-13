@@ -13,11 +13,11 @@ export const HomePage = () => (
       </div>
       
       <img src={homePageWallpaper1} className="homePageWallpaper1" alt="Home Page Wallpaper" />
-      <main>
+      <main className="mainContainer">
         <h1>Bem-vindo(a) ao Doe  Fácil</h1>
 
         <div>
-          <img className="homePageWallpaper2" src={homePageWallpaper2} alt="" />
+          <img className="homePageWallpaper2" src={homePageWallpaper2} alt="Home Page Wallpaper" />
 
           <p>
             Com a sua doação  podemos ajudar aqueles que mais precisam, desde famílias de baixa renda até indivíduos sem-teto. Sua contribuição pode fazer toda a diferença na vida de alguém.

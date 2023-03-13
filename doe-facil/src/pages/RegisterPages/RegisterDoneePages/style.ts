@@ -7,19 +7,6 @@ export const StylePageRegister = styled.div`
 
     display: flex;
     flex-direction: column;
-
-    .modalContainer{
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        top: 0;
-        left: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba(0,0,0,0.5);
-    }
-    
     
     h1{
         font-size: 1.5rem;
@@ -47,7 +34,7 @@ export const StylePageRegister = styled.div`
         gap: .5rem;
     }
 
-    .mainContainer{
+    main{
         display: flex;
     }
 

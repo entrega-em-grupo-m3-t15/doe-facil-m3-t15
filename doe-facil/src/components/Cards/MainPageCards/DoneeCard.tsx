@@ -37,12 +37,14 @@ export const MainPageCard = ({ donation }: ICardDonation) => {
             <p>{donation.amount}</p>
           </div>
         </div>
-        <button onClick={() => setIsOpenModal(true)}>Detalhes</button>
+        <button onClick={() => {
+          setIsOpenModal(true)
+        }
+          }>Detalhes</button>
       </main>
-      {isOpenModal && <DetailsModal />}
-      {especialModalIsOpen == "collectModal" && (
+      {/* {especialModalIsOpen == "collectModal" && (
         <CollectModal cardId={donation.id} />
-      )}
+      )} */}
     </li>
   );
 };
