@@ -31,7 +31,7 @@ export const UserInfo = () => {
               />
             </div>
 
-            <h2>{user?.user?.name}</h2>
+            <h2>{user?.name}</h2>
           </span>
         </div>
 
@@ -39,13 +39,13 @@ export const UserInfo = () => {
           <h2>Informações</h2>
           <ul>
             <li>
-              <span>Contato:</span> {user?.user.contact}
+              <span>Contato:</span> {user?.contact}
             </li>
             <li>
-              <span>Endereço:</span> {user?.user.adress}
+              <span>Endereço:</span> {user?.adress}
             </li>
             <li>
-              <span> E-mail:</span> {user?.user.email}
+              <span> E-mail:</span> {user?.email}
             </li>
           </ul>
         </div>

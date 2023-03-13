@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { iAxiosError } from "../user/userInterfaces";
+import { iAxiosError } from "../userInterfaces";
 
 export interface IUserProps {
   name: string;

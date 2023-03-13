@@ -14,5 +14,17 @@ export const ProtectedRoutes = () => {
     );
   }
 
-  return <>{user ? <Outlet /> : <Navigate to="/" />}</>;
+  if (!user) {
+    return <Navigate to={"/"} />;
+  }
+
+  if (user.user?.isDonor && window.location.pathname.includes("/donee/")) {
+    return <Navigate to={"/mainPage"} />;
+  }
+
+  if (!user.user?.isDonor && window.location.pathname.includes("/donor/")) {
+    return <Navigate to={"/mainPage"} />;
+  }
+
+  return <Outlet />;
 };

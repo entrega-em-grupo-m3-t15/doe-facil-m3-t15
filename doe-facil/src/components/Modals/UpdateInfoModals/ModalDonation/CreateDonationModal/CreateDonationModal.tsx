@@ -20,7 +20,6 @@ export const CreateDonationModal = () => {
   });
 
   const submitForm: SubmitHandler<IFormRegisterDonation> = (formData) => {
-    console.log("submitFormRegister");
     registerDonation(formData);
   };
 
@@ -42,10 +41,10 @@ export const CreateDonationModal = () => {
 
           <textarea cols={30} rows={10} {...register("description")}></textarea>
           <h2>Esta doação é</h2>
-          {/* <div>
-     
-          </div> */}
-
+          <select {...register("isClothes")}>
+            <option value="roupas">Roupas</option>
+            <option value="alimentos">Alimento</option>
+          </select>
           <button type="submit">Enviar</button>
         </form>
       </div>

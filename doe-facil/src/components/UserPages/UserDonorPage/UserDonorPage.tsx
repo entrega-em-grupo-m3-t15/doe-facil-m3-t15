@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { UserInfo } from "../UserInfo/UserInfo";
 import logo from "../../../img/logo.svg";
 import { StyleHeaderUserPage, StyleUserPage } from "./style";
-import { DonorCard } from "../../Cards/UserPageCards/DonorCard";
 import { useContext } from "react";
 import { DashboardContext } from "../../../contexts/DashboardContext/DashboardContext";
 import ListDonation from "./ListDonation";
@@ -24,7 +23,7 @@ export const UserDonorPage = () => {
             </div>
             <div>
               <nav>
-                <Link to="/userPage">Voltar</Link>
+                <Link to="/mainPage">Voltar</Link>
               </nav>
             </div>
           </div>

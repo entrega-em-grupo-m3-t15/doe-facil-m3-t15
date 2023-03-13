@@ -2,13 +2,15 @@ import { SetStateAction } from "react";
 import {
   iAxiosError,
   iDoneeRegister,
+  iUserData,
+  iUserDataExample,
   iUserLogin,
   iUserLoginResponse,
 } from "../userInterfaces";
 
 export interface iUserRequestsContext {
-  user: iUserLoginResponse | null;
-  setUser: React.Dispatch<SetStateAction<iUserLoginResponse | null>>;
+  user: iUserDataExample | null;
+  setUser: React.Dispatch<SetStateAction<iUserDataExample | null>>;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 

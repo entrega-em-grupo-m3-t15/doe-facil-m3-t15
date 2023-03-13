@@ -3,12 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserRequestsContext } from "../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
 import { BiUserCircle } from "react-icons/bi";
 import { DashboardContext } from "../../contexts/DashboardContext/DashboardContext";
-import { MainPageCard } from "../../components/Cards/MainPageCards/DoneeCard";
+
 import {
   StyledCardListMain,
   StyledContainerMobile,
   StyledHeaderMain,
 } from "./style";
+import { MainPageCard } from "../../components/Cards/MainPageCards/DoneeCard";
 
 export const MainPage = () => {
   const { user } = useContext(UserRequestsContext);
@@ -22,6 +23,8 @@ export const MainPage = () => {
     navigate("/");
   };
 
+  console.log(user);
+
   return (
     <StyledContainerMobile>
       <StyledHeaderMain>
@@ -30,8 +33,8 @@ export const MainPage = () => {
         <Link
           to={
             user?.user?.isDonor
-              ? `/userPage/donor/${user?.user?.id}`
-              : `/userPage/donee/${user?.user?.id}`
+              ? `/mainPage/donor/${user && user.id}`
+              : `/mainPage/donee/${user && user.id}`
           }
         >
           Perfil
