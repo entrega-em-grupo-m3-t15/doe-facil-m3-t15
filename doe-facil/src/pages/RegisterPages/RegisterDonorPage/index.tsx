@@ -7,7 +7,7 @@ export const RegisterDonorPage = () => (
 
   <StylePageRegister>
     <Header/>
-    <main >
+    <main className="mainContainer" >
       
       <div className="wallpaper">
         <img src={wallpaperLogin} alt="" />
