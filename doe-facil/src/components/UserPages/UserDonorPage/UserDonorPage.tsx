@@ -6,13 +6,11 @@ import { useContext } from "react";
 import ListDonation from "./ListDonation";
 import { CreateDonationModal } from "../../Modals/UpdateInfoModals/ModalDonation/CreateDonationModal/CreateDonationModal";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
-import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser";
-import { DashboardContext } from "../../../contexts/DashboardContext/DashboardContext";
+import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser/ModalUpdateUser";
 
 export const UserDonorPage = () => {
-
-  const { setDonationsUser, donationsUser } = useContext( DashboardContext )
-  const { setEspecialModalIsOpen, especialModalIsOpen } = useContext(ModalsContext)
+  const { setEspecialModalIsOpen, especialModalIsOpen } =
+    useContext(ModalsContext);
 
   return (
     <StyleUserPage>
@@ -42,7 +40,9 @@ export const UserDonorPage = () => {
             </div>
             <section>
               <span className="button_creat_donation">
-                <button onClick={() => setEspecialModalIsOpen("createDonation")}>
+                <button
+                  onClick={() => setEspecialModalIsOpen("createDonation")}
+                >
                   Fazer doação
                 </button>
               </span>
