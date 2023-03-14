@@ -34,7 +34,8 @@ export interface IGetDonations {
 }
 
 export interface IAddProductToUser {
-  cardId: number;
+  cardId: number | string;
+  setModalType?: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 export interface ICardDonation {

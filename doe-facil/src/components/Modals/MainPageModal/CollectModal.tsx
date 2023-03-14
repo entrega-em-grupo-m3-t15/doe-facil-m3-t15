@@ -4,19 +4,22 @@ import { IAddProductToUser } from "../../../contexts/DashboardContext/interface"
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
 
 export const CollectModal = ({ cardId }: IAddProductToUser) => {
-  const { isOpenModal, setIsOpenModal } = useContext(ModalsContext);
+  const { setEspecialModalIsOpen } = useContext(ModalsContext);
   const { addDonationToUser } = useContext(DashboardContext);
   return (
-    <dialog open={isOpenModal}>
+    <dialog>
       <div className="container_collectModal">
         <header>
-          <button onClick={() => setIsOpenModal(false)}>X</button>
+          <button onClick={() => setEspecialModalIsOpen("")}>X</button>
           <h2>Resgatar doação?</h2>
-        </header> 
+        </header>
 
         <main>
           <div className="buttons_collectModal">
-            <button className="button_no" onClick={() => setIsOpenModal(false)}>
+            <button
+              className="button_no"
+              onClick={() => setEspecialModalIsOpen("")}
+            >
               Não
             </button>
             <button

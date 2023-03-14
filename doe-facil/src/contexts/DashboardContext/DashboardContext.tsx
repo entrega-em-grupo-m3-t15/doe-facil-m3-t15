@@ -57,27 +57,25 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
   }, [user]);
 
   const getDonationsUser = async () => {
-
     const userToken = localStorage.getItem("@USERTOKEN");
     const userId = localStorage.getItem("USERID");
-   
-      try {
-        setLoading(true);
-        const response = await API.get(`/users/${userId}?_embed=donations`, {
-          headers: {
-            Authorization: `Bearer ${userToken}`,
-          },
-        });
-        setDonationsUser(response.data.donations)
-      } catch (error) {
-        if (axios.isAxiosError<iAxiosError>(error)) {
-          const errorMessage = error.response?.data?.message;
-          toast.error(errorMessage);
-        }
-  
-        console.error(error);
+
+    try {
+      setLoading(true);
+      const response = await API.get(`/users/${userId}?_embed=donations`, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      });
+      setDonationsUser(response.data.donations);
+    } catch (error) {
+      if (axios.isAxiosError<iAxiosError>(error)) {
+        const errorMessage = error.response?.data?.message;
+        toast.error(errorMessage);
       }
-      finally {
+
+      console.error(error);
+    } finally {
       setLoading(false);
     }
   };
@@ -207,6 +205,7 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
         deleteDonation,
         setDonationsUser,
         donationsUser,
+        getDonationsUser,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserRequestsContext } from "../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
 import { BiUserCircle } from "react-icons/bi";
@@ -10,15 +10,13 @@ import {
   StyledHeaderMain,
 } from "./style";
 import { MainPageCard } from "../../components/Cards/MainPageCards/DoneeCard";
-import { DetailsModal } from "../../components/Modals/UpdateInfoModals/ModalDonation/DetailsDonationModal/DetailsModal";
-import { ModalsContext } from "../../contexts/ModalsContext/ModalsContext";
 import logo from "../../img/logo.svg";
 
 export const MainPage = () => {
-  const { isOpenModal } = useContext(ModalsContext);
   const { user } = useContext(UserRequestsContext);
   const { donations } = useContext(DashboardContext);
   const userId = localStorage.getItem("@USERID");
+  const [modalType, setModalType] = useState("");
 
   const navigate = useNavigate();
 
@@ -42,7 +40,7 @@ export const MainPage = () => {
 
           <Link
             to={
-              user?.user?.isDonor
+              user?.isDonor
                 ? `/mainPage/donor/${userId}`
                 : `/mainPage/donee/${userId}`
             }
@@ -58,7 +56,7 @@ export const MainPage = () => {
             className="box_icon"
             onClick={() =>
               navigate(
-                user?.user?.isDonor
+                user?.isDonor
                   ? `/mainPage/donor/${userId}`
                   : `/mainPage/donee/${userId}`
               )
@@ -79,11 +77,17 @@ export const MainPage = () => {
 
         <StyledCardListMain>
           {donations.map((donation, index) => {
-            return <MainPageCard donation={donation} key={index} />;
+            return (
+              <MainPageCard
+                donation={donation}
+                key={index}
+                modalType={modalType}
+                setModalType={setModalType}
+              />
+            );
           })}
         </StyledCardListMain>
       </main>
-      {isOpenModal && <DetailsModal />}
     </StyledContainerMobile>
   );
 };
