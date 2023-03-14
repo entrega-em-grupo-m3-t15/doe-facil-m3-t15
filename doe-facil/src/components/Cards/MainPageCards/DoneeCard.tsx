@@ -35,9 +35,9 @@ export const MainPageCard = ({
         <div className="container_card">
           <div className="box_image">
             {donation.isClothes ? (
-              <img src={imageClothes} alt="imagem d adoação" />
+              <img src={imageClothes} alt="imagem da doação" />
             ) : (
-              <img src={imageFood} alt="imagem d adoação" />
+              <img src={imageFood} alt="imagem da doação" />
             )}
           </div>
           <div className="card_description">
