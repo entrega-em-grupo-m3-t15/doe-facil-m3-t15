@@ -12,6 +12,7 @@ import {
 import { MainPageCard } from "../../components/Cards/MainPageCards/DoneeCard";
 import { DetailsModal } from "../../components/Modals/UpdateInfoModals/ModalDonation/DetailsDonationModal/DetailsModal";
 import { ModalsContext } from "../../contexts/ModalsContext/ModalsContext";
+import logo from "../../img/logo.svg";
 
 export const MainPage = () => {
   const { isOpenModal } = useContext(ModalsContext);
@@ -36,14 +37,14 @@ export const MainPage = () => {
           <button onClick={() => logoutUser}>Sair</button>
 
           <div className="box_logo">
-            <img src="" alt="" />
+            <img src={logo} alt="" />
           </div>
 
           <Link
             to={
               user?.user?.isDonor
-                ? `/userPage/donor/${userId}`
-                : `/userPage/donee/${userId}`
+                ? `/mainPage/donor/${userId}`
+                : `/mainPage/donee/${userId}`
             }
           >
             Perfil
@@ -58,8 +59,8 @@ export const MainPage = () => {
             onClick={() =>
               navigate(
                 user?.user?.isDonor
-                  ? `/userPage/donor/${userId}`
-                  : `/userPage/donee/${userId}`
+                  ? `/mainPage/donor/${userId}`
+                  : `/mainPage/donee/${userId}`
               )
             }
           >
@@ -67,8 +68,8 @@ export const MainPage = () => {
           </div>
 
           <div className="user_information">
-            <h2>{user?.user?.email}</h2>
-            <p>{user?.user?.contact}</p>
+            <h2>{user?.name}</h2>
+            <p>{user?.contact}</p>
           </div>
         </div>
       </section>
