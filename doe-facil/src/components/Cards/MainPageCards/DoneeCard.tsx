@@ -48,9 +48,9 @@ export const MainPageCard = ({ donation }: ICardDonation) => {
         }
           }>Detalhes</button>
       </main>
-       {especialModalIsOpen == "collectModal" && (
+       {/* {especialModalIsOpen == "collectModal" && (
         <CollectModal cardId={donation.id} />
-      )}
+      )} */}
     </StyleCards>
   );
 };

@@ -6,7 +6,7 @@ import { useContext } from "react";
 import ListDonation from "./ListDonation";
 import { CreateDonationModal } from "../../Modals/UpdateInfoModals/ModalDonation/CreateDonationModal/CreateDonationModal";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
-import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser";
+import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser/ModalUpdateUser";
 import { DashboardContext } from "../../../contexts/DashboardContext/DashboardContext";
 
 export const UserDonorPage = () => {

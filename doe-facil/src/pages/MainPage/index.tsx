@@ -12,12 +12,12 @@ import {
 import { MainPageCard } from "../../components/Cards/MainPageCards/DoneeCard";
 import { DetailsModal } from "../../components/Modals/UpdateInfoModals/ModalDonation/DetailsDonationModal/DetailsModal";
 import { ModalsContext } from "../../contexts/ModalsContext/ModalsContext";
+import { CollectModal } from "../../components/Modals/MainPageModal/CollectModal";
 
 export const MainPage = () => {
-  const { isOpenModal } = useContext(ModalsContext)
+  const { isOpenModal, especialModalIsOpen } = useContext(ModalsContext)
   const { user } = useContext(UserRequestsContext);
   const { donations } = useContext(DashboardContext);
-  const userId = localStorage.getItem("@USERID");
 
   const navigate = useNavigate();
 
@@ -32,37 +32,23 @@ export const MainPage = () => {
   return (
     <StyledContainerMobile>
       <StyledHeaderMain>
-        <div className="box_header">
-          <button onClick={() => logoutUser}>Sair</button>
-
-          <div className="box_logo">
-            <img src={logo} alt="" />
-          </div>
+        <button onClick={() => logoutUser}>Sair</button>
 
         <Link
           to={
-            user?.user.isDonor
-              ? `/userPage/donor/${user?.user.id}`
-              : `/userPage/donee/${user?.user.id}`
+            user?.user?.isDonor
+              ? `/mainPage/donor/${user && user.id}`
+              : `/mainPage/donee/${user && user.id}`
           }
         >
           Perfil
         </Link>
-        </div>
       </StyledHeaderMain>
 
-      <section>
-        <div className="box_profile">
-          <div className="box_icon"
-            onClick={() =>
-              navigate(
-                user?.user.isDonor
-                  ? `/userPage/donor/${user?.user.id}`
-                  : `/userPage/donee/${user?.user.id}`
-              )
-            }
-          >
-            <BiUserCircle style={{ width: 100, height: 80 }} />
+      <StyledHeaderMain>
+        <div>
+          <div onClick={() => navigate("mainPage/:id")}>
+            <BiUserCircle />
           </div>
 
           <div className="user_information">
@@ -70,7 +56,7 @@ export const MainPage = () => {
             <p>{user?.user?.contact}</p>
           </div>
         </div>
-      </section>
+      </StyledHeaderMain>
 
       <main>
         <h2>Doações</h2>
@@ -82,6 +68,7 @@ export const MainPage = () => {
         </StyledCardListMain>
       </main>
       {isOpenModal && <DetailsModal />}
+      
     </StyledContainerMobile>
   );
 };

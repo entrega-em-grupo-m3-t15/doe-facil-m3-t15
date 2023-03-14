@@ -48,7 +48,6 @@ export const UserInfo = () => {
           </li>
         </ul>
       </div>
-      {especialModalIsOpen == "editUser" && <ModalUpdateUser />}
     </StyleProfileUser>
   );
 };
