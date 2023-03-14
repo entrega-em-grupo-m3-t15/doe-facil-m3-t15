@@ -1,28 +1,27 @@
 import { useContext } from "react";
 import { DashboardContext } from "../../../../../contexts/DashboardContext/DashboardContext";
-import { ModalsContext } from "../../../../../contexts/ModalsContext/ModalsContext";
 import { StyledDialog } from "./style";
 
-export const DetailsModal = () => {
-  const { isOpenModal, setIsOpenModal } = useContext(ModalsContext);
+export interface iDatailsModalProps {
+  donation: number;
+  closeModal: () => void;
+}
+
+export const DetailsModal = ({ donation, closeModal }: iDatailsModalProps) => {
   const { donations } = useContext(DashboardContext);
+  const donationDetails = donations.find((card) => card.id === donation);
 
   return (
-    <StyledDialog open={isOpenModal}>
-      <div>
-        <button onClick={() => setIsOpenModal(false)}>X</button>
-        {donations.map((element) => {
-          return (
-            <div>
-              <div>{element.image}</div>
-              <div>
-                <h2>{element.name}</h2>
-                <p>{element.description}</p>
-                <p>{element.amount}</p>
-              </div>
-            </div>
-          );
-        })}
+    <StyledDialog>
+      <div className="box_modal">
+        <button onClick={closeModal}>X</button>
+
+        <div>{donationDetails?.image}</div>
+        <h2>{donationDetails?.name}</h2>
+        <div className="box_description">
+          <p>{donationDetails?.description}</p>
+          <p>{donationDetails?.amount}</p>
+        </div>
       </div>
     </StyledDialog>
   );

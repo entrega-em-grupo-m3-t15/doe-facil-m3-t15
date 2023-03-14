@@ -18,11 +18,11 @@ export const ProtectedRoutes = () => {
     return <Navigate to={"/"} />;
   }
 
-  if (user.user?.isDonor && window.location.pathname.includes("/donee/")) {
+  if (user?.isDonor && window.location.pathname.includes("/donee/")) {
     return <Navigate to={"/mainPage"} />;
   }
 
-  if (!user.user?.isDonor && window.location.pathname.includes("/donor/")) {
+  if (!user?.isDonor && window.location.pathname.includes("/donor/")) {
     return <Navigate to={"/mainPage"} />;
   }
 
