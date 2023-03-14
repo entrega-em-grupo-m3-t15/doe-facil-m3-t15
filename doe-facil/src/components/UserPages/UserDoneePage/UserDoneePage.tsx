@@ -3,13 +3,12 @@ import { StyleUserPage, StyleHeaderUserPage } from "../UserDonorPage/style";
 import { UserInfo } from "../UserInfo/UserInfo";
 import logo from "../../../img/logo.svg";
 import ListDonationDonee from "./ListDonationDonee";
-import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser/ModalUpdateUser";
 import { useContext } from "react";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
+import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser/ModalUpdateUser";
 
 export const UserDoneePage = () => {
-
-  const { especialModalIsOpen } = useContext(ModalsContext)
+  const { especialModalIsOpen } = useContext(ModalsContext);
 
   return (
     <StyleUserPage>
@@ -43,7 +42,7 @@ export const UserDoneePage = () => {
         </main>
       </div>
 
-      {especialModalIsOpen === "editUser" && <ModalUpdateUser/>}
+      {especialModalIsOpen === "editUser" && <ModalUpdateUser />}
     </StyleUserPage>
   );
 };

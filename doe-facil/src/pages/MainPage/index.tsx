@@ -14,7 +14,7 @@ import { DetailsModal } from "../../components/Modals/UpdateInfoModals/ModalDona
 import { ModalsContext } from "../../contexts/ModalsContext/ModalsContext";
 
 export const MainPage = () => {
-  const { isOpenModal } = useContext(ModalsContext)
+  const { isOpenModal } = useContext(ModalsContext);
   const { user } = useContext(UserRequestsContext);
   const { donations } = useContext(DashboardContext);
   const userId = localStorage.getItem("@USERID");
@@ -36,29 +36,30 @@ export const MainPage = () => {
           <button onClick={() => logoutUser}>Sair</button>
 
           <div className="box_logo">
-            <img src={logo} alt="" />
+            <img src="" alt="" />
           </div>
 
-        <Link
-          to={
-            user?.user.isDonor
-              ? `/userPage/donor/${user?.user.id}`
-              : `/userPage/donee/${user?.user.id}`
-          }
-        >
-          Perfil
-        </Link>
+          <Link
+            to={
+              user?.user?.isDonor
+                ? `/userPage/donor/${userId}`
+                : `/userPage/donee/${userId}`
+            }
+          >
+            Perfil
+          </Link>
         </div>
       </StyledHeaderMain>
 
       <section>
         <div className="box_profile">
-          <div className="box_icon"
+          <div
+            className="box_icon"
             onClick={() =>
               navigate(
-                user?.user.isDonor
-                  ? `/userPage/donor/${user?.user.id}`
-                  : `/userPage/donee/${user?.user.id}`
+                user?.user?.isDonor
+                  ? `/userPage/donor/${userId}`
+                  : `/userPage/donee/${userId}`
               )
             }
           >
