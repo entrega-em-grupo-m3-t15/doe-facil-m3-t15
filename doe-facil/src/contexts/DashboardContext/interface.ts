@@ -1,5 +1,10 @@
 import { ReactNode } from "react";
 
+export interface iAxiosError {
+  status: string;
+  message: string;
+}
+
 export interface IFormRegisterDonation {
   name: string;
   description: string;
@@ -31,15 +36,17 @@ export interface IGetDonations {
   id: number;
   userId: number;
   image: string;
+  isAvailable: boolean;
 }
 
 export interface IAddProductToUser {
   cardId: number | string;
-  setModalType?: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 export interface ICardDonation {
   donation: IGetDonations;
+  modalType?: string;
+  setModalType?: Function;
 }
 
 export interface IDashboardContext {
@@ -48,11 +55,11 @@ export interface IDashboardContext {
   isClothes: boolean;
   setIsClothes: React.Dispatch<React.SetStateAction<boolean>>;
   donationsUser: IGetDonations[];
-  registerDonation: (data: IFormRegisterDonation) => void;
-  addDonationToUser: (productId: IAddProductToUser) => void;
-  updateDonation: (data: IUpdateDonation) => void;
   setDonationsUser: React.Dispatch<React.SetStateAction<IGetDonations[]>>;
-  getDonationsUser: () => Promise<void>;
+  registerDonation: (data: IFormRegisterDonation) => void;
+  addDonationToUser: (cardId: number | string) => void;
+  removeDonationFromUser: (cardId: number, userId: number) => Promise<void>;
+  updateDonation: (data: IUpdateDonation) => void;
   deleteDonation: () => Promise<void>;
 }
 

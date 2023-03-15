@@ -13,12 +13,15 @@ export const DonorCard = ({ donation }: ICardDonation) => {
 
   const { especialModalIsOpen, setEspecialModalIsOpen } =
     useContext(ModalsContext);
-    console.log(donation.isClothes)
 
   return (
     <StyleCardsDonor>
       <div className="card_title">
-        <h2>Disponível</h2>
+        {donation.isAvailable ? (
+          <h2>Disponível para resgate</h2>
+        ) : (
+          <h2>Já resgatado</h2>
+        )}
       </div>
 
       <section className="box_card">

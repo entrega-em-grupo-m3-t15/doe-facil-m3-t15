@@ -11,19 +11,19 @@ export const MainPageCard = ({
   donation,
   modalType,
   setModalType,
-}: ICardDonation & { modalType: string; setModalType: Function }) => {
+}: ICardDonation) => {
   const { user } = useContext(UserRequestsContext);
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
 
   const openCollectModal = () => {
-    if (!user?.isDonor) {
+    if (!user!.isDonor) {
       setSelectedCard(donation.id);
-      setModalType("collectModal");
+      setModalType!(`donee${donation.id}`);
     }
   };
 
   const openDetailsModal = () => {
-    setModalType("detailsModal");
+    setModalType!(`${donation.id}`);
   };
 
   return (
@@ -48,11 +48,13 @@ export const MainPageCard = ({
         </div>
         <button onClick={openDetailsModal}>Detalhes</button>
       </main>
-      {modalType === "collectModal" && <CollectModal cardId={donation.id} />}
-      {modalType === "detailsModal" && (
+      {modalType == `donee${donation.id}` && (
+        <CollectModal cardId={donation.id} />
+      )}
+      {modalType === `${donation.id}` && (
         <DetailsModal
           donation={donation.id}
-          closeModal={() => setModalType("")}
+          closeModal={() => setModalType!("")}
         />
       )}
     </StyleCards>

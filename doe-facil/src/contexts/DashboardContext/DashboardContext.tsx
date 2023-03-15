@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { iAxiosError } from "../user/userInterfaces";
+
 import {
   IAddProductToUser,
+  iAxiosError,
   IChildrenProps,
   IDashboardContext,
   IFormRegisterDonation,
@@ -22,7 +23,6 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
   const [isClothes, setIsClothes] = useState(false);
 
   const donationId = localStorage.getItem("@DONATIONID");
-  const userId = localStorage.getItem("@USERID");
 
   const { user, setLoading } = useContext(UserRequestsContext);
 
@@ -56,29 +56,35 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
     }
   }, [user]);
 
-  const getDonationsUser = async () => {
-    const userToken = localStorage.getItem("@USERTOKEN");
-    const userId = localStorage.getItem("USERID");
+  useEffect(() => {
+    const getDonationsUser = async () => {
+      const userToken = localStorage.getItem("@USERTOKEN");
+      const userId = localStorage.getItem("@USERID");
 
-    try {
-      setLoading(true);
-      const response = await API.get(`/users/${userId}?_embed=donations`, {
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-        },
-      });
-      setDonationsUser(response.data.donations);
-    } catch (error) {
-      if (axios.isAxiosError<iAxiosError>(error)) {
-        const errorMessage = error.response?.data?.message;
-        toast.error(errorMessage);
+      try {
+        setLoading(true);
+        const response = await API.get(`/users/${userId}?_embed=donations`, {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        });
+        setDonationsUser(response.data.donations);
+      } catch (error) {
+        if (axios.isAxiosError<iAxiosError>(error)) {
+          const errorMessage = error.response?.data?.message;
+          toast.error(errorMessage);
+        }
+
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
+    };
 
-      console.error(error);
-    } finally {
-      setLoading(false);
+    if (user) {
+      getDonationsUser();
     }
-  };
+  }, [user]);
 
   const registerDonation = async (data: IFormRegisterDonation) => {
     const userId = localStorage.getItem("USERID");
@@ -101,23 +107,30 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
     }
   };
 
-  const addDonationToUser = async (cardId: IAddProductToUser) => {
-    const userId = localStorage.getItem("USERID");
+  const addDonationToUser = async (cardId: number | string) => {
+    const userId = localStorage.getItem("@USERID");
+
+    console.log(cardId);
 
     try {
       setLoading(true);
-      const response = await API.get(`/donations/${cardId}`);
+
+      const { data: response } = await API.get(`/donations/${cardId}`);
+
+      const { data: user } = await API.get(`/users/${userId}`);
+
+      const updatedDonations = user.donations
+        ? [...user.donations, response]
+        : [response];
 
       await API.put(`/users/${userId}`, {
         ...user,
-        donations: user?.user!.donations
-          ? [...user.user.donations, response.data]
-          : [response.data],
+        donations: updatedDonations,
       });
 
       toast.success("Produto adicionado ao seu perfil com sucesso!");
     } catch (error) {
-      if (axios.isAxiosError<iAxiosError>(error)) {
+      if (axios.isAxiosError(error)) {
         const errorMessage = error.response?.data?.message;
         toast.error(errorMessage);
       }
@@ -131,16 +144,16 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
   const removeDonationFromUser = async (cardId: number, userId: number) => {
     try {
       setLoading(true);
-      const user = await API.get(`/users/${userId}`);
 
-      const donations = user?.data?.user?.donations;
+      const { data } = await API.get(`/users/${userId}`);
+      const { user } = data;
 
-      const updatedDonations = donations?.filter(
+      const updatedDonations = user.donations.filter(
         (donation: { _id: number }) => donation._id !== cardId
       );
 
       await API.put(`/users/${userId}`, {
-        ...user?.data?.user,
+        ...user,
         donations: updatedDonations,
       });
 
@@ -201,11 +214,11 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
         setIsClothes,
         registerDonation,
         addDonationToUser,
+        removeDonationFromUser,
         updateDonation,
         deleteDonation,
         setDonationsUser,
         donationsUser,
-        getDonationsUser,
       }}
     >
       {children}

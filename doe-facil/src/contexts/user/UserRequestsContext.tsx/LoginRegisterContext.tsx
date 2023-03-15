@@ -2,17 +2,12 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { iDoneeRegister } from "../../../components/Form/RegistersForm/RegisterDoneeForm/RegisterDoneeForm";
+import { iDonorRegister } from "../../../components/Form/RegistersForm/RegisterDonorForm/RegisterDonorForm";
 import { API } from "../../../Services/api";
+import { iAxiosError } from "../../DashboardContext/interface";
 
-import {
-  iAxiosError,
-  iDoneeRegister,
-  iDonorRegister,
-  iUserData,
-  iUserDataExample,
-  iUserLogin,
-  iUserLoginResponse,
-} from "../userInterfaces";
+import { IUserDataExample, IUserLogin } from "../userInterfaces";
 import { iUserRequestsContext } from "./interfaces";
 
 export interface iUserRequestsrProps {
@@ -22,7 +17,7 @@ export interface iUserRequestsrProps {
 export const UserRequestsContext = createContext({} as iUserRequestsContext);
 
 export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
-  const [user, setUser] = useState<iUserDataExample | null>(null);
+  const [user, setUser] = useState<IUserDataExample | null>(null);
   const [loading, setLoading] = useState(false);
 
   const [userID, setUserID] = useState<string | null>(
@@ -49,7 +44,7 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
 
       toast.success("Cadastro realizado com sucesso!");
 
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
@@ -62,7 +57,7 @@ export const UserRequestsProvider = ({ children }: iUserRequestsrProps) => {
     }
   };
 
-  const loginUserRequest = async (data: iUserLogin) => {
+  const loginUserRequest = async (data: IUserLogin) => {
     try {
       setLoading(true);
       const response = await API.post("/login", data);

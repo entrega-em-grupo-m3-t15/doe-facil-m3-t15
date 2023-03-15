@@ -1,21 +1,23 @@
 import { useContext } from "react";
 import { DashboardContext } from "../../../../contexts/DashboardContext/DashboardContext";
-import DonationsDonne from "./Donations";
+import { DonorCard } from "../../../Cards/UserPageCards/DonorCard";
 
-const ListDonationDonee = () => {
+export const ListDonorDonations = () => {
   const { donationsUser } = useContext(DashboardContext);
 
   return (
     <ul>
       {donationsUser.length > 0 ? (
-        <DonationsDonne />
+        <>
+          {donationsUser.map((donation) => (
+            <DonorCard donation={donation} key={donation.id} />
+          ))}
+        </>
       ) : (
         <div className="list_donation_empty">
-          <h2>Você ainda não resgatou doações</h2>
+          <h2>Você ainda não adicionou doações</h2>
         </div>
       )}
     </ul>
   );
 };
-
-export default ListDonationDonee;

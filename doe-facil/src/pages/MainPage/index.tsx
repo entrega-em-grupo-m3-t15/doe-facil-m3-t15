@@ -26,13 +26,11 @@ export const MainPage = () => {
     navigate("/");
   };
 
-  console.log(user);
-
   return (
     <StyledContainerMobile>
       <StyledHeaderMain>
         <div className="box_header">
-          <button onClick={() => logoutUser}>Sair</button>
+          <button onClick={logoutUser}>Sair</button>
 
           <div className="box_logo">
             <img src={logo} alt="" />

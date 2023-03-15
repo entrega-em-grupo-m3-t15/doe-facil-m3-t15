@@ -1,16 +1,11 @@
 import { SetStateAction } from "react";
-import {
-  iAxiosError,
-  iDoneeRegister,
-  iUserData,
-  iUserDataExample,
-  iUserLogin,
-  iUserLoginResponse,
-} from "../userInterfaces";
+import { iDoneeRegister } from "../../../components/Form/RegistersForm/RegisterDoneeForm/RegisterDoneeForm";
+import { iAxiosError } from "../../DashboardContext/interface";
+import { IUserDataExample, IUserLogin } from "../userInterfaces";
 
 export interface iUserRequestsContext {
-  user: iUserDataExample | null;
-  setUser: React.Dispatch<SetStateAction<iUserDataExample | null>>;
+  user: IUserDataExample | null;
+  setUser: React.Dispatch<SetStateAction<IUserDataExample | null>>;
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -18,6 +13,6 @@ export interface iUserRequestsContext {
     data: iDoneeRegister,
     isDonor: boolean
   ) => Promise<iAxiosError | void>;
-  loginUserRequest: (data: iUserLogin) => Promise<iAxiosError | void>;
+  loginUserRequest: (data: IUserLogin) => Promise<iAxiosError | void>;
   autoLogin: (userId: string | null) => Promise<void>;
 }

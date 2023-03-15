@@ -24,7 +24,7 @@ export const CollectModal = ({ cardId }: IAddProductToUser) => {
             </button>
             <button
               className="button_yes"
-              onClick={() => addDonationToUser({ cardId: cardId })}
+              onClick={() => addDonationToUser(cardId)}
             >
               Sim
             </button>

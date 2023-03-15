@@ -1,21 +1,15 @@
-import { IGetDonations } from "../DashboardContext/interface";
+import { iAxiosError, IGetDonations } from "../DashboardContext/interface";
 
-export interface iAxiosError {
-  status: string;
-  message: string;
-}
-
-export interface iUserRegister {
+export interface IUserRegister {
   id: string;
   name: string;
   email: string;
   contact: string;
   password: string;
   error?: string | undefined;
-  axiosError: iAxiosError;
 }
 
-export interface iUserData {
+export interface IUserData {
   id: string;
   name: string;
   email: string;
@@ -27,12 +21,12 @@ export interface iUserData {
   donations?: IGetDonations[];
 }
 
-export interface iUserLoginResponse {
+export interface IUserLoginResponse {
   accessToken: string;
-  user: iUserData;
+  user: IUserData;
 }
 
-export interface iUserDataExample {
+export interface IUserDataExample {
   id?: string;
   name?: string;
   email?: string;
@@ -43,17 +37,17 @@ export interface iUserDataExample {
   password?: string;
   donations?: IGetDonations[];
   acessToken?: string;
-  user?: iUserData;
+  user?: IUserData;
 }
 
-export interface iUserLogin {
+export interface IUserLogin {
   email: string;
   password: string;
   axiosErrors?: iAxiosError;
   error?: string | undefined;
 }
 
-export interface iDoneeRegister {
+export interface IDoneeRegister {
   name: string;
   email: string;
   contact: string;
@@ -63,7 +57,7 @@ export interface iDoneeRegister {
   confirm_password: string;
 }
 
-export interface iDonorRegister {
+export interface IDonorRegister {
   name: string;
   email: string;
   contact: string;

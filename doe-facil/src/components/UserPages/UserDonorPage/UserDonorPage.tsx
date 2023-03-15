@@ -3,10 +3,11 @@ import { UserInfo } from "../UserInfo/UserInfo";
 import logo from "../../../img/logo.svg";
 import { StyleHeaderUserPage, StyleUserPage } from "./style";
 import { useContext } from "react";
-import ListDonation from "./ListDonation";
+
 import { CreateDonationModal } from "../../Modals/UpdateInfoModals/ModalDonation/CreateDonationModal/CreateDonationModal";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
 import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser/ModalUpdateUser";
+import { ListDonorDonations } from "./ListDonorDonations/ListDonorDonations";
 
 export const UserDonorPage = () => {
   const { setEspecialModalIsOpen, especialModalIsOpen } =
@@ -47,7 +48,7 @@ export const UserDonorPage = () => {
                 </button>
               </span>
               <div className="box_cards">
-                <ListDonation />
+                <ListDonorDonations />
               </div>
             </section>
           </div>
