@@ -30,7 +30,7 @@ export const Header = () => {
           </nav>
         </div>
 
-        {isOpenModal && <RegisterModal />}
+        {isOpenModal ? <RegisterModal /> : null}
       </div>
     </StyleHeader>
   );

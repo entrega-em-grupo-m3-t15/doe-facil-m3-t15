@@ -35,9 +35,9 @@ export const UserDonorPage = () => {
           <div className="box_profile-main">
             <div className="box_info">
               <UserInfo />
-              {especialModalIsOpen == "creatDonation" && (
+              {especialModalIsOpen == "creatDonation" ? (
                 <CreateDonationModal />
-              )}
+              ) : null}
             </div>
             <section>
               <span className="button_creat_donation">
@@ -55,8 +55,8 @@ export const UserDonorPage = () => {
         </main>
       </div>
 
-      {especialModalIsOpen == "createDonation" && <CreateDonationModal />}
-      {especialModalIsOpen == "editUser" && <ModalUpdateUser />}
+      {especialModalIsOpen == "createDonation" ? <CreateDonationModal /> : null}
+      {especialModalIsOpen == "editUser" ? <ModalUpdateUser /> : null}
     </StyleUserPage>
   );
 };

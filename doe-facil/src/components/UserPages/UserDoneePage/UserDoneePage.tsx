@@ -42,7 +42,7 @@ export const UserDoneePage = () => {
         </main>
       </div>
 
-      {especialModalIsOpen === "editUser" && <ModalUpdateUser />}
+      {especialModalIsOpen === "editUser" ? <ModalUpdateUser /> : null}
     </StyleUserPage>
   );
 };

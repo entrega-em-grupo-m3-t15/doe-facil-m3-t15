@@ -48,7 +48,7 @@ export const UserInfo = () => {
           </li>
         </ul>
       </div>
-      {especialModalIsOpen == "editUser" && <ModalUpdateUser />}
+      {especialModalIsOpen == "editUser" ? <ModalUpdateUser /> : null}
     </StyleProfileUser>
   );
 };

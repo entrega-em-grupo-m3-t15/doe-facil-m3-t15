@@ -23,8 +23,9 @@ export interface IUserData
 export interface IUserDataExample
   extends Pick<
     IUserData,
-    "id" | "name" | "email" | "contact" | "password" | "donations"
+    "id" | "name" | "email" | "adress" | "contact" | "password" | "donations"
   > {
+  isDonor: any;
   acessToken?: string;
   user?: IUserData;
 }

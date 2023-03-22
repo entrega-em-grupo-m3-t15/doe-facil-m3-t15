@@ -44,8 +44,8 @@ export const DonorCard = ({ donation }: ICardDonation) => {
           </div>
         </div>
       </section>
-      {especialModalIsOpen == "editModal" && <EditModal />}
-      {especialModalIsOpen == "deleteModal" && <DeleteModal />}
+      {especialModalIsOpen == "editModal" ? <EditModal /> : null}
+      {especialModalIsOpen == "deleteModal" ? <DeleteModal /> : null}
     </StyleCardsDonor>
   );
 };

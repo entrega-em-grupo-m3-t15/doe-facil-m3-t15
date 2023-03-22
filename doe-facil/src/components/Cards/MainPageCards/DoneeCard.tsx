@@ -15,19 +15,26 @@ export const MainPageCard = ({
   const { user } = useContext(UserRequestsContext);
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
 
-  const openCollectModal = () => {
+  const modals = {
+    [`donee${donation.id}`]: <CollectModal cardId={donation.id} />,
+    [`${donation.id}`]: (
+      <DetailsModal
+        donation={donation.id}
+        closeModal={() => setModalType!("")}
+      />
+    ),
+  };
+
+  const openModal = () => {
+    if (modalType) return;
     if (!user!.isDonor) {
       setSelectedCard(donation.id);
       setModalType!(`donee${donation.id}`);
     }
   };
 
-  const openDetailsModal = () => {
-    setModalType!(`${donation.id}`);
-  };
-
   return (
-    <StyleCards onClick={openCollectModal}>
+    <StyleCards onClick={openModal}>
       <div className="card_title">
         <h2>Disponível</h2>
       </div>
@@ -46,17 +53,9 @@ export const MainPageCard = ({
             <p>{donation.amount}</p>
           </div>
         </div>
-        <button onClick={openDetailsModal}>Detalhes</button>
+        <button onClick={() => setModalType!(donation.id)}>Detalhes</button>
       </main>
-      {modalType == `donee${donation.id}` && (
-        <CollectModal cardId={donation.id} />
-      )}
-      {modalType === `${donation.id}` && (
-        <DetailsModal
-          donation={donation.id}
-          closeModal={() => setModalType!("")}
-        />
-      )}
+      {modalType && modals[modalType]}
     </StyleCards>
   );
 };
