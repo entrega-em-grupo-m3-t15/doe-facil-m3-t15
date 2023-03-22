@@ -1,20 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DashboardContext } from "../../../../contexts/DashboardContext/DashboardContext";
-import { UserRequestsContext } from "../../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
-import { MainPageCard } from "../../../Cards/MainPageCards/DoneeCard";
+import { DonorCard } from "../../../Cards/UserPageCards/DonorCard";
 
-const ListDonationDonee = () => {
-  const { donationsUser } = useContext(DashboardContext);
-  const { user } = useContext(UserRequestsContext);
+export const ListDonationDonee = () => {
+  const { donationsUser, getDonationsUser } = useContext(DashboardContext);
 
-  console.log(donationsUser);
-  console.log(user);
+  useEffect(() => {
+    getDonationsUser();
+  }, []);
 
   return (
     <ul>
       {donationsUser.length > 0 ? (
         donationsUser.map((donation) => (
-          <MainPageCard donation={donation} key={donation.id} />
+          <DonorCard donation={donation} key={donation.id} />
         ))
       ) : (
         <div className="list_donation_empty">
@@ -24,5 +23,3 @@ const ListDonationDonee = () => {
     </ul>
   );
 };
-
-export default ListDonationDonee;

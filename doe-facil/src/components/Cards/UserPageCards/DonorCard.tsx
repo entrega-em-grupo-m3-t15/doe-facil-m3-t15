@@ -8,9 +8,6 @@ import imageClothes from "../../../img/profileImage/imageclothes.svg";
 import { StyleCardsDonor } from "./style";
 
 export const DonorCard = ({ donation }: ICardDonation) => {
-  //Fazer a requisição que mostra as informações dos cards aqui (/users/id) está como user Data no insominia
-  //devo ver a lógica como colocar esse boleano de isAvaliable no insomonia
-
   const { especialModalIsOpen, setEspecialModalIsOpen } =
     useContext(ModalsContext);
 

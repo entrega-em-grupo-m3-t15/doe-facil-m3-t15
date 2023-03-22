@@ -1,4 +1,4 @@
-import { iAxiosError, IGetDonations } from "../DashboardContext/interface";
+import { IGetDonations, iAxiosError } from "../DashboardContext/interface";
 
 export interface IUserRegister {
   id: string;
@@ -9,33 +9,22 @@ export interface IUserRegister {
   error?: string | undefined;
 }
 
-export interface IUserData {
-  id: string;
-  name: string;
-  email: string;
-  contact: string;
+export interface IUserData
+  extends Pick<
+    IUserRegister,
+    "id" | "name" | "email" | "contact" | "password"
+  > {
   adress: string;
   userInCome: string;
   isDonor: boolean;
-  password: string;
   donations?: IGetDonations[];
 }
 
-export interface IUserLoginResponse {
-  accessToken: string;
-  user: IUserData;
-}
-
-export interface IUserDataExample {
-  id?: string;
-  name?: string;
-  email?: string;
-  contact?: string;
-  adress?: string;
-  userInCome?: string;
-  isDonor?: boolean;
-  password?: string;
-  donations?: IGetDonations[];
+export interface IUserDataExample
+  extends Pick<
+    IUserData,
+    "id" | "name" | "email" | "contact" | "password" | "donations"
+  > {
   acessToken?: string;
   user?: IUserData;
 }
@@ -47,21 +36,18 @@ export interface IUserLogin {
   error?: string | undefined;
 }
 
-export interface IDoneeRegister {
-  name: string;
-  email: string;
-  contact: string;
-  adress: string;
-  userInCome?: string;
-  password: string;
+export interface IDoneeRegister
+  extends Pick<
+    IUserData,
+    "name" | "email" | "contact" | "adress" | "password"
+  > {
   confirm_password: string;
 }
 
-export interface IDonorRegister {
-  name: string;
-  email: string;
-  contact: string;
-  adress: string;
-  password: string;
+export interface IDonorRegister
+  extends Pick<
+    IUserData,
+    "name" | "email" | "contact" | "adress" | "password"
+  > {
   confirm_password: string;
 }

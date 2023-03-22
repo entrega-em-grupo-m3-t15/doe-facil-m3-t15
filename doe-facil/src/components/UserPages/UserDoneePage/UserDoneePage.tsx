@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { StyleUserPage, StyleHeaderUserPage } from "../UserDonorPage/style";
 import { UserInfo } from "../UserInfo/UserInfo";
 import logo from "../../../img/logo.svg";
-import ListDonationDonee from "./ListDonationDonee/ListDonationDonee";
+import { ListDonationDonee } from "./ListDonationDonee/ListDonationDonee";
 import { useContext } from "react";
 import { ModalsContext } from "../../../contexts/ModalsContext/ModalsContext";
 import { ModalUpdateUser } from "../../Modals/UpdateInfoModals/ModalUser/ModalUpdateUser/ModalUpdateUser";

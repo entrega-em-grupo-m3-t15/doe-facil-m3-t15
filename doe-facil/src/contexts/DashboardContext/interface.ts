@@ -11,17 +11,6 @@ export interface IFormRegisterDonation {
   isClothes: boolean;
 }
 
-export interface IRegisterDonation {
-  name: string;
-  description: string;
-  amount: number;
-  id: number;
-  userId: number;
-  image: string;
-  isAvailable: boolean;
-  isClothes: boolean;
-}
-
 export interface IUpdateDonation {
   name: string;
   description: string;
@@ -61,6 +50,7 @@ export interface IDashboardContext {
   removeDonationFromUser: (cardId: number, userId: number) => Promise<void>;
   updateDonation: (data: IUpdateDonation) => void;
   deleteDonation: () => Promise<void>;
+  getDonationsUser: () => Promise<void>;
 }
 
 export interface IChildrenProps {

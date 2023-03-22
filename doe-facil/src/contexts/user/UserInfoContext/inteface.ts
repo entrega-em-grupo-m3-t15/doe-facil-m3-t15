@@ -1,19 +1,9 @@
 import { ReactNode } from "react";
-import { iAxiosError } from "../userInterfaces";
+import { iAxiosError } from "../../DashboardContext/interface";
+import { IUserData } from "../userInterfaces";
 
-export interface IUserProps {
-  name: string;
-  email: string;
-  password: string;
-  userIncome?: string;
-}
-
-export interface iUpdateUser {
-  name: string;
-  adress: string;
-  contact: string;
-  userInCome: string;
-}
+export interface iUpdateUser
+  extends Pick<IUserData, "name" | "adress" | "contact" | "userInCome"> {}
 
 export interface IUserContextProps {
   deleteUser: () => Promise<iAxiosError | void>;

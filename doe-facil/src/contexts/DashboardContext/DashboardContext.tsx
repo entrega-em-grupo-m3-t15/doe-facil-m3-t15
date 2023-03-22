@@ -1,13 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 import {
-  IAddProductToUser,
   iAxiosError,
   IChildrenProps,
   IDashboardContext,
   IFormRegisterDonation,
   IGetDonations,
-  IRegisterDonation,
   IUpdateDonation,
 } from "./interface";
 import axios from "axios";
@@ -24,14 +22,13 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
 
   const donationId = localStorage.getItem("@DONATIONID");
 
-  const { user, setLoading } = useContext(UserRequestsContext);
+  const { user } = useContext(UserRequestsContext);
 
   useEffect(() => {
     const userToken = localStorage.getItem("@USERTOKEN");
-    const userId = localStorage.getItem("USERID");
+    const userId = localStorage.getItem("@USERID");
 
     if (userId || userToken) {
-      setLoading(true);
       const getDonations = async () => {
         try {
           const response = await API.get("/donations", {
@@ -48,51 +45,39 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
           }
 
           console.error(error);
-        } finally {
-          setLoading(false);
         }
       };
       getDonations();
     }
   }, [user]);
 
-  useEffect(() => {
-    const getDonationsUser = async () => {
-      const userToken = localStorage.getItem("@USERTOKEN");
-      const userId = localStorage.getItem("@USERID");
-
-      try {
-        setLoading(true);
-        const response = await API.get(`/users/${userId}?_embed=donations`, {
-          headers: {
-            Authorization: `Bearer ${userToken}`,
-          },
-        });
-        setDonationsUser(response.data.donations);
-      } catch (error) {
-        if (axios.isAxiosError<iAxiosError>(error)) {
-          const errorMessage = error.response?.data?.message;
-          toast.error(errorMessage);
-        }
-
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (user) {
-      getDonationsUser();
-    }
-  }, [user]);
-
-  const registerDonation = async (data: IFormRegisterDonation) => {
-    const userId = localStorage.getItem("USERID");
+  const getDonationsUser = async () => {
+    const userToken = localStorage.getItem("@USERTOKEN");
+    const userId = localStorage.getItem("@USERID");
 
     try {
-      setLoading(true);
+      const response = await API.get(`/users/${userId}?_expand=donations`, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      });
+
+      setDonationsUser(response.data.donations);
+    } catch (error) {
+      if (axios.isAxiosError<iAxiosError>(error)) {
+        const errorMessage = error.response?.data?.message;
+        toast.error(errorMessage);
+      }
+      console.error(error);
+    }
+  };
+
+  const registerDonation = async (data: IFormRegisterDonation) => {
+    const userId = localStorage.getItem("@USERID");
+
+    try {
       const donationData = { ...data, isAvailable: true };
-      await API.post<IRegisterDonation>(`/donations/${userId}}`, donationData);
+      await API.post<IGetDonations>(`/donations/${userId}}`, donationData);
 
       toast.success("Doação cadastrada com sucesso!");
     } catch (error) {
@@ -102,19 +87,13 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
       }
 
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
 
   const addDonationToUser = async (cardId: number | string) => {
     const userId = localStorage.getItem("@USERID");
 
-    console.log(cardId);
-
     try {
-      setLoading(true);
-
       const { data: response } = await API.get(`/donations/${cardId}`);
 
       const { data: user } = await API.get(`/users/${userId}`);
@@ -136,15 +115,11 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
       }
 
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
 
   const removeDonationFromUser = async (cardId: number, userId: number) => {
     try {
-      setLoading(true);
-
       const { data } = await API.get(`/users/${userId}`);
       const { user } = data;
 
@@ -165,14 +140,11 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
       }
 
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
 
   const updateDonation = async (data: IUpdateDonation) => {
     try {
-      setLoading(true);
       await API.patch<IUpdateDonation>(`/donations/${donationId}`, data);
 
       toast.success("Doação atualizada com sucesso!");
@@ -183,14 +155,11 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
       }
 
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
 
   const deleteDonation = async () => {
     try {
-      setLoading(true);
       await API.delete(`/donations/${donationId}`);
       toast.success("Doação deletada com sucesso!");
     } catch (error) {
@@ -200,8 +169,6 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
       }
 
       console.error(error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -219,6 +186,7 @@ export const DashboardProvider = ({ children }: IChildrenProps) => {
         deleteDonation,
         setDonationsUser,
         donationsUser,
+        getDonationsUser,
       }}
     >
       {children}

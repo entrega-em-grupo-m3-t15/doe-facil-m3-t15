@@ -1,9 +1,11 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DashboardContext } from "../../../../contexts/DashboardContext/DashboardContext";
+import { UserRequestsContext } from "../../../../contexts/user/UserRequestsContext.tsx/LoginRegisterContext";
 import { DonorCard } from "../../../Cards/UserPageCards/DonorCard";
 
 export const ListDonorDonations = () => {
-  const { donationsUser } = useContext(DashboardContext);
+  const { donationsUser, getDonationsUser } = useContext(DashboardContext);
+  const { user } = useContext(UserRequestsContext);
 
   return (
     <ul>

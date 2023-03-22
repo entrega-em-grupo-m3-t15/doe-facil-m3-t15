@@ -57,6 +57,5 @@ export const StyleCards = styled.li`
 
   @media (min-width: 685px) {
     width: 30%;
-
   }
 `;
